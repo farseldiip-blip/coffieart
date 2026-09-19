@@ -1,299 +1,811 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>KOFFIE ART — Speciality Coffee, Mansoura</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/styles.css">
-<script id="tailwind-config">
-tailwind.config = {
-    theme: {
-        extend: {
-            "colors": {
-                "surface": "#F2EDE4", "surface-cream": "#E8E0D5", "surface-card": "#FDFBF8",
-                "surface-subtle": "#F5F0E8", "on-surface": "#3D2E24",
-                "on-surface-variant": "#6E6258", "on-surface-muted": "#9A8E82",
-                "accent": "#9E8868", "accent-warm": "#8A7660", "accent-deep": "#7A6858",
-                "outline": "#C8BDB0",
-                "brand-gradient": "linear-gradient(135deg, #9E8868, #8A7660, #7A6858)",
-            },
-            "borderRadius": { "DEFAULT": "0px", "sm": "0.125rem", "md": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-            "spacing": { "section-gap": "120px", "container-max": "1280px" },
-            "fontFamily": { "display": ["Bodoni Moda"], "body": ["Manrope"], "label-caps": ["Manrope"] },
-            "fontSize": {
-                "display-xl": ["clamp(56px,10vw,120px)", { "lineHeight": "0.95", "letterSpacing": "-0.03em", "fontWeight": "700" }],
-                "display-lg": ["clamp(36px,6vw,64px)", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                "display-md": ["clamp(28px,4vw,42px)", { "lineHeight": "1.05", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-                "body-lg": ["18px", { "lineHeight": "1.7", "fontWeight": "400" }],
-                "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.2em", "fontWeight": "700" }]
-            }
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>KOFFIE ART — Specialty Coffee & Roastery, Mansoura</title>
+    <meta name="description" content="KOFFIE ART is a premier specialty coffee shop in Mansoura, Egypt. House-roasted beans, manual brews, artisan espresso, and handcrafted daily desserts."/>
+    
+    <!-- Open Graph / Social Meta -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="KOFFIE ART — Specialty Coffee, Mansoura"/>
+    <meta property="og:description" content="House-roasted specialty coffee and desserts, crafted with care in the heart of Mansoura."/>
+    <meta property="og:image" content="assets/products/spanish_latte.jpg"/>
+    <meta property="og:url" content="https://koffieart.com/"/>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png"/>
+
+    <!-- Google Fonts & Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preload" as="image" href="assets/hero-coffee.webp" type="image/webp" fetchpriority="high"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <!-- JSON-LD LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "KOFFIE ART",
+      "image": "assets/hero-coffee.jpg",
+      "description": "House-roasted specialty coffee and desserts, crafted with care in the heart of Mansoura, Egypt.",
+      "telephone": "+201000000000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "El-Geish St.",
+        "addressLocality": "Mansoura",
+        "addressRegion": "Dakahlia",
+        "addressCountry": "EG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 31.0379,
+        "longitude": 31.3130
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "10:00",
+          "closes": "24:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Friday"],
+          "opens": "13:00",
+          "closes": "24:00"
+        }
+      ],
+      "servesCuisine": "Specialty Coffee, Desserts",
+      "priceRange": "$$"
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Central Configuration Object -->
+    <script src="js/config.js"></script>
+
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()" aria-hidden="true"></div>
+    <div class="mobile-menu-drawer" id="menuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <div class="mobile-nav-top">
+            <div class="brand-mark mb-8">
+                <span class="brand-mark-logo-wrap">
+                    <img src="assets/logo.png" alt="KOFFIE ART logo" width="38" height="38"/>
+                </span>
+                <span class="brand-mark-text">KOFFIE ART</span>
+            </div>
+            <nav class="mobile-nav-list" aria-label="Mobile Menu Links">
+                <a href="menu.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Menu</a>
+                <a href="#gallery" class="mobile-nav-link" onclick="toggleMobileMenu()">Gallery</a>
+                <a href="#visit" class="mobile-nav-link" onclick="toggleMobileMenu()">Visit</a>
+                <a href="#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            </nav>
+        </div>
+        <div class="mobile-nav-bottom">
+            <a href="menu.html" class="btn-primary w-full text-center" onclick="toggleMobileMenu()">View Full Menu</a>
+        </div>
+    </div>
+
+    <!-- 1. Header (Sticky) -->
+    <header class="site-header" id="siteHeader">
+        <div class="container site-header__wrap">
+            <a href="index.html" class="brand-mark" aria-label="KOFFIE ART Home">
+                <span class="brand-mark-logo-wrap">
+                    <img src="assets/logo.png" alt="KOFFIE ART logo" width="38" height="38"/>
+                </span>
+                <span class="brand-mark-text">KOFFIE ART</span>
+            </a>
+
+            <!-- Desktop Nav (Menu, Gallery, Visit, Contact) -->
+            <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation" style="display: flex; gap: 32px; align-items: center;">
+                <a class="nav-link" href="menu.html">Menu</a>
+                <a class="nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link" href="#visit">Visit</a>
+                <a class="nav-link" href="#contact">Contact</a>
+                <a href="#visit" class="btn-outline nav-btn-visit" style="padding: 8px 18px; min-height: 40px; font-size: 11px;">Visit Us</a>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+        </div>
+    </header>
+
+    <main id="mainContent">
+
+        <!-- 2. Hero Section -->
+        <section class="hero" id="home" aria-label="KOFFIE ART Specialty Coffee">
+            <!-- Full-Bleed Media Container with Dark Coffee-Toned Fallback -->
+            <div class="hero__bg-container" aria-hidden="true">
+                <picture>
+                    <source srcset="assets/hero-coffee.webp" type="image/webp"/>
+                    <img 
+                        src="assets/hero-coffee.jpg" 
+                        alt="" 
+                        class="hero__bg-image"
+                        loading="eager" 
+                        fetchpriority="high" 
+                        width="1920" 
+                        height="1080"
+                        decoding="async"
+                    />
+                </picture>
+                <div class="hero__bg-overlay"></div>
+            </div>
+
+            <div class="container hero__container">
+                <div class="hero__content">
+                    <!-- Dynamic Open Status Pill (Africa/Cairo timezone) -->
+                    <div class="hero__status-wrap reveal">
+                        <div class="status-pill" id="heroOpenStatus" aria-live="polite">
+                            <span class="status-dot status-dot--open" aria-hidden="true"></span>
+                            <span class="status-text">Open now · until 12 AM</span>
+                        </div>
+                    </div>
+
+                    <!-- Eyebrow -->
+                    <p class="hero__eyebrow reveal stagger-1">
+                        <span class="brand-gradient-text">SPECIALTY COFFEE</span> · MANSOURA
+                    </p>
+
+                    <!-- H1 (both words same strong color) -->
+                    <h1 class="hero__title font-display reveal stagger-2">
+                        KOFFIE ART
+                    </h1>
+
+                    <!-- Subheadline (max 2 lines) -->
+                    <p class="hero__subheadline reveal stagger-3">
+                        House-roasted specialty coffee and desserts, crafted with care in the heart of Mansoura.
+                    </p>
+
+                    <!-- Primary & Secondary CTAs -->
+                    <div class="hero__actions reveal stagger-4">
+                        <a href="menu.html" class="btn-hero-primary" id="heroCtaMenu">
+                            <span>View Menu</span>
+                        </a>
+                        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary" id="heroCtaDirections">
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">near_me</span>
+                            <span>Get Directions</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Row -->
+                    <div class="hero__trust-row reveal stagger-4" id="heroTrustRow" aria-label="Cafe Highlights">
+                        <div class="trust-item">
+                            <span class="trust-rating" id="trustRating">★ 4.9</span>
+                            <span class="trust-label" id="trustReviews">500+ reviews</span>
+                        </div>
+                        <span class="trust-divider" aria-hidden="true">·</span>
+                        <a href="https://instagram.com/koffieart" target="_blank" rel="noopener noreferrer" class="trust-item trust-link" id="trustInstagram" aria-label="Follow KOFFIE ART on Instagram">
+                            <span class="trust-label">Instagram</span>
+                            <span class="trust-value" id="trustInstagramHandle">@koffieart</span>
+                        </a>
+                        <span class="trust-divider" aria-hidden="true">·</span>
+                        <div class="trust-item">
+                            <span class="trust-label">Specialty Craft</span>
+                            <span class="trust-value" id="trustSinceYear">Since 2021</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Menu Preview Section -->
+        <section class="section section--bg-alt" id="menu-preview" aria-labelledby="menuPreviewTitle">
+            <div class="container">
+                <div class="section-header section-header--center reveal">
+                    <p class="section-label">Curated Selection</p>
+                    <h2 class="section-heading" id="menuPreviewTitle">Handcrafted Favorites</h2>
+                    <p class="section-intro">Every beverage is dialed in for balance, aroma, and silky texture. Here are three house signatures we recommend first.</p>
+                </div>
+
+                <!-- 3 Product Cards: 1 & 2 side by side on ALL screens, 3 full width below -->
+                <div class="menu-preview-grid" id="menuPreviewGrid">
+                    <!-- Card 1 -->
+                    <article class="product-card reveal-scale stagger-1">
+                        <div class="product-card__img-wrap">
+                            <picture>
+                                <source srcset="assets/products/spanish_latte.webp" type="image/webp"/>
+                                <img src="assets/products/spanish_latte.jpg" alt="Signature Spanish Latte" class="product-card__img" width="500" height="500" loading="lazy"/>
+                            </picture>
+                        </div>
+                        <div class="product-card__content">
+                            <div class="product-card__header">
+                                <h3 class="product-card__title">Spanish Latte</h3>
+                                <span class="product-card__price">85 EGP</span>
+                            </div>
+                            <p class="product-card__desc">Silky textured milk, artisan espresso, and lightly spiced sweet cream.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="product-card reveal-scale stagger-2">
+                        <div class="product-card__img-wrap">
+                            <picture>
+                                <source srcset="assets/products/v60_pourover.webp" type="image/webp"/>
+                                <img src="assets/products/v60_pourover.jpg" alt="V60 Specialty Pour-Over" class="product-card__img" width="500" height="500" loading="lazy"/>
+                            </picture>
+                        </div>
+                        <div class="product-card__content">
+                            <div class="product-card__header">
+                                <h3 class="product-card__title">V60 Pour-Over</h3>
+                                <span class="product-card__price">95 EGP</span>
+                            </div>
+                            <p class="product-card__desc">Single-origin Ethiopian Guji with bright jasmine notes and citrus finish.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: Full Width Landscape Card -->
+                    <article class="product-card product-card--featured reveal-scale stagger-3">
+                        <div class="product-card__img-wrap">
+                            <picture>
+                                <source srcset="assets/products/basque_cheesecake.webp" type="image/webp"/>
+                                <img src="assets/products/basque_cheesecake.jpg" alt="Basque Burnt Cheesecake" class="product-card__img" width="800" height="500" loading="lazy"/>
+                            </picture>
+                        </div>
+                        <div class="product-card__content">
+                            <div class="product-card__header">
+                                <h3 class="product-card__title">Basque Burnt Cheesecake</h3>
+                                <span class="product-card__price">110 EGP</span>
+                            </div>
+                            <p class="product-card__desc">Caramelized deeply scorched crust with a melting custard center, baked fresh in-house daily to pair with manual brews.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Centered Full Menu CTA -->
+                <div class="menu-preview-cta reveal">
+                    <a href="menu.html" class="btn-primary">
+                        <span>View Full Menu</span>
+                        <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Gallery Section -->
+        <section class="section section--bg" id="gallery" aria-labelledby="galleryTitle">
+            <div class="container">
+                <div class="section-header section-header--center reveal">
+                    <p class="section-label">Moments & Craft</p>
+                    <h2 class="section-heading" id="galleryTitle">The KOFFIE ART Space</h2>
+                    <p class="section-intro">A glimpse into our roasting bar, barista craftsmanship, and the welcoming atmosphere in Mansoura.</p>
+                </div>
+
+                <!-- Responsive Grid: 2 columns on mobile, 3 columns on desktop -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-card reveal-scale stagger-1" onclick="openLightbox(0)" role="button" tabindex="0" aria-label="View photo: Artisan Pour">
+                        <picture>
+                            <source srcset="assets/gallery/latte_art.webp" type="image/webp"/>
+                            <img src="assets/gallery/latte_art.jpg" alt="Artisan tulip latte art poured in a handcrafted stoneware cup" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">Artisan Pour</p>
+                            <p class="gallery-card__caption">Freshly steamed micro-foam & single-origin espresso</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-card reveal-scale stagger-2" onclick="openLightbox(1)" role="button" tabindex="0" aria-label="View photo: The Mansoura Space">
+                        <picture>
+                            <source srcset="assets/gallery/interior.webp" type="image/webp"/>
+                            <img src="assets/gallery/interior.jpg" alt="Warm minimalist specialty coffee space in Mansoura" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">The Mansoura Space</p>
+                            <p class="gallery-card__caption">Designed for calm conversation and specialty craft</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-card reveal-scale stagger-3" onclick="openLightbox(2)" role="button" tabindex="0" aria-label="View photo: Barista Precision">
+                        <picture>
+                            <source srcset="assets/gallery/barista.webp" type="image/webp"/>
+                            <img src="assets/gallery/barista.jpg" alt="Barista texturing milk with espresso steam wand" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">Barista Precision</p>
+                            <p class="gallery-card__caption">Dialed in with scale precision on commercial group head</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-card reveal-scale stagger-1" onclick="openLightbox(3)" role="button" tabindex="0" aria-label="View photo: House Roasting">
+                        <picture>
+                            <source srcset="assets/gallery/coffee_craft.webp" type="image/webp"/>
+                            <img src="assets/hero-coffee.jpg" alt="Barista crafting specialty coffee" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">House Roasting</p>
+                            <p class="gallery-card__caption">Small-batch specialty beans with ethical provenance</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 5 -->
+                    <div class="gallery-card reveal-scale stagger-2" onclick="openLightbox(4)" role="button" tabindex="0" aria-label="View photo: Slow-Drip Cold Brew">
+                        <picture>
+                            <source srcset="assets/gallery/cold_brew.webp" type="image/webp"/>
+                            <img src="assets/menu_images/page_1.webp" alt="Slow-drip artisan cold brew" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">Slow-Drip Cold Brew</p>
+                            <p class="gallery-card__caption">18-hour cold immersion for smooth, rich extraction</p>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 6 -->
+                    <div class="gallery-card reveal-scale stagger-3" onclick="openLightbox(5)" role="button" tabindex="0" aria-label="View photo: Daily Bakery">
+                        <picture>
+                            <source srcset="assets/gallery/desserts.webp" type="image/webp"/>
+                            <img src="assets/products/basque_cheesecake.jpg" alt="Freshly baked artisan Basque cheesecake" loading="lazy" width="600" height="450"/>
+                        </picture>
+                        <div class="gallery-card__overlay">
+                            <p class="gallery-card__title">Daily Bakery</p>
+                            <p class="gallery-card__caption">Handcrafted pairing desserts baked from scratch daily</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instagram Follow Link -->
+                <div class="gallery-footer reveal">
+                    <a href="https://instagram.com/koffieart" target="_blank" rel="noopener noreferrer" class="instagram-link" id="galleryInstagramLink">
+                        <span class="material-symbols-outlined text-base">photo_camera</span>
+                        <span>Follow us on Instagram @koffieart</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Hours & Location Section -->
+        <section class="section section--bg-alt" id="visit" aria-labelledby="visitTitle">
+            <div class="container">
+                <div class="section-header reveal">
+                    <p class="section-label">Visit KOFFIE ART</p>
+                    <h2 class="section-heading" id="visitTitle">Hours & Location</h2>
+                    <p class="section-intro">Located in the heart of Mansoura. Join us for morning espresso, afternoon pour-overs, or cozy evening study sessions.</p>
+                </div>
+
+                <div class="hours-location-grid">
+                    <!-- Left: Weekly Opening Hours List -->
+                    <div class="hours-card reveal-left">
+                        <div class="hours-header">
+                            <h3 class="hours-title">Weekly Schedule</h3>
+                            <span class="status-pill" id="scheduleOpenPill">
+                                <span class="status-dot status-dot--open" aria-hidden="true"></span>
+                                <span id="scheduleOpenText">Open Today</span>
+                            </span>
+                        </div>
+                        <ul class="hours-list" id="weeklyHoursList" aria-label="Opening Hours per Day">
+                            <!-- Populated dynamically from CAFE_CONFIG.weeklyHours -->
+                        </ul>
+                    </div>
+
+                    <!-- Right: Google Maps Embed & Address Details -->
+                    <div class="location-card reveal-right">
+                        <div class="map-frame">
+                            <iframe 
+                                id="googleMapsIframe"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109477.56061327178!2d31.312959827055747!3d31.037933107024887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f79db7a9053547%3A0xf69c7308cfd0ee6e!2sMansoura%2C%20Mansoura%20Qism%202%2C%20El%20Mansoura%2C%20Dakahlia%20Governorate!5e0!3m2!1sen!2seg!4v1700000000000!5m2!1sen!2seg" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="KOFFIE ART Location Map in Mansoura">
+                            </iframe>
+                        </div>
+                        <div class="location-details">
+                            <div class="location-address">
+                                <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+                                <div>
+                                    <strong style="display:block; margin-bottom: 2px;">KOFFIE ART Cafe</strong>
+                                    <p id="locationAddressText" style="color: var(--muted); font-size: 14.5px;">El-Geish St., Mansoura, Dakahlia Governorate, Egypt</p>
+                                </div>
+                            </div>
+                            <div class="location-actions">
+                                <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="btn-primary" id="locationDirectionsBtn">
+                                    <span class="material-symbols-outlined text-sm" aria-hidden="true">near_me</span>
+                                    <span>Get Directions</span>
+                                </a>
+                                <a href="tel:+201000000000" class="phone-link" id="locationPhoneBtn">
+                                    <span class="material-symbols-outlined text-sm" aria-hidden="true">call</span>
+                                    <span id="locationPhoneText">+20 100 000 0000</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Contact Section -->
+        <section class="section section--bg" id="contact" aria-labelledby="contactTitle">
+            <div class="container">
+                <div class="section-header section-header--center reveal">
+                    <p class="section-label">Direct Connect</p>
+                    <h2 class="section-heading" id="contactTitle">Get in Touch</h2>
+                    <p class="section-intro">Questions, reservations, or just want to say hi? Reach out directly through your favorite channel.</p>
+                </div>
+
+                <!-- Two Large Action Cards: WhatsApp & Instagram -->
+                <div class="contact-cards-grid">
+                    <!-- WhatsApp Card -->
+                    <a href="https://wa.me/351XXXXXXXXX?text=Hi%20KOFFIE%20ART%2C%20I%27d%20like%20to%20ask%20about..." target="_blank" rel="noopener noreferrer" class="contact-card contact-card--whatsapp reveal-left">
+                        <div class="contact-card__icon-wrap">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">chat</span>
+                        </div>
+                        <h3 class="contact-card__title">Chat on WhatsApp</h3>
+                        <p class="contact-card__desc">Fastest response for takeaway orders, reservations, and questions.</p>
+                        <span class="contact-card__action">
+                            <span>Open WhatsApp</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+                        </span>
+                    </a>
+
+                    <!-- Instagram Card -->
+                    <a href="https://instagram.com/koffieart" target="_blank" rel="noopener noreferrer" class="contact-card contact-card--instagram reveal-right" id="contactInstagramLink">
+                        <div class="contact-card__icon-wrap">
+                            <span class="material-symbols-outlined text-3xl" aria-hidden="true">photo_camera</span>
+                        </div>
+                        <h3 class="contact-card__title">Direct on Instagram</h3>
+                        <p class="contact-card__desc">Browse new seasonal arrivals, stories, and send us a direct message.</p>
+                        <span class="contact-card__action">
+                            <span>Visit @koffieart</span>
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="contact-meta reveal">
+                    <p>Prefer calling? Direct line: <a href="tel:+201000000000" id="contactPhoneLink" style="font-weight:700; color:var(--ink);">+20 100 000 0000</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 7. Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand & Tagline -->
+                <div class="footer-brand">
+                    <div class="brand-mark">
+                        <span class="brand-mark-logo-wrap">
+                            <img src="assets/logo.png" alt="KOFFIE ART logo" width="38" height="38"/>
+                        </span>
+                        <span class="brand-mark-text">KOFFIE ART</span>
+                    </div>
+                    <p class="footer-tagline">House-roasted specialty coffee and desserts, crafted with care in the heart of Mansoura.</p>
+                    <div class="footer-social-row">
+                        <a href="https://instagram.com/koffieart" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="KOFFIE ART on Instagram" id="footerInstagramBtn">
+                            <span class="material-symbols-outlined text-lg">photo_camera</span>
+                        </a>
+                        <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="KOFFIE ART on WhatsApp" id="footerWhatsappBtn">
+                            <span class="material-symbols-outlined text-lg">chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="menu.html">Full Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#visit">Hours & Location</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Address & Hours Summary -->
+                <div>
+                    <h3 class="footer-heading">Visit Us</h3>
+                    <p style="color: rgba(250,246,240,0.75); font-size: 14px; margin-bottom: 8px;" id="footerAddressText">El-Geish St., Mansoura, Egypt</p>
+                    <p style="color: rgba(250,246,240,0.75); font-size: 14px; margin-bottom: 8px;">Sat – Thu: 10 AM – 12 AM</p>
+                    <p style="color: rgba(250,246,240,0.75); font-size: 14px;">Friday: 1 PM – 12 AM</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 KOFFIE ART. All rights reserved. Specialty Coffee · Mansoura, Egypt.</p>
+                <p>Designed with care for coffee lovers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Bottom Action Bar (Screens < 768px only) -->
+    <nav class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
+        <a href="menu.html" class="bottom-bar-btn bottom-bar-btn--primary">
+            <span class="material-symbols-outlined" aria-hidden="true">restaurant_menu</span>
+            <span>Menu</span>
+        </a>
+        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn" id="mobileDirectionsBtn">
+            <span class="material-symbols-outlined" aria-hidden="true">near_me</span>
+            <span>Directions</span>
+        </a>
+        <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn bottom-bar-btn--whatsapp" id="mobileWhatsappBtn">
+            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+            <span>WhatsApp</span>
+        </a>
+    </nav>
+
+    <!-- Lightweight Lightbox Modal -->
+    <div class="lightbox" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Image Preview" onclick="handleLightboxClick(event)">
+        <button class="lightbox__close" onclick="closeLightbox()" aria-label="Close image viewer">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <button class="lightbox__prev" onclick="prevLightbox(event)" aria-label="Previous image">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="lightbox__next" onclick="nextLightbox(event)" aria-label="Next image">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+        <div class="lightbox__content">
+            <img src="" alt="" class="lightbox__img" id="lightboxImg"/>
+            <p class="lightbox__caption" id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <!-- Core Interactive JavaScript -->
+    <script>
+    // ── Mobile Menu Toggle & Focus Trap ──
+    function toggleMobileMenu() {
+        const overlay = document.getElementById('menuOverlay');
+        const drawer = document.getElementById('menuDrawer');
+        const isActive = drawer.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = isActive ? 'hidden' : '';
+        if (isActive) {
+            drawer.querySelector('button, a')?.focus();
         }
     }
-}
-</script>
-<style>
-    .hero-bg {
-        background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEWWeD3rz2jVBcjovNWBxvWR571X91DP6jAEqAYHhn1ii1gdXybFrIeOeBPDR19iaPTUEJEyioN8UlGRctR5UjbL3qh6wtT79Xe-VhgDdPB1yP_kpe3Yj9se5Tmw7okr26DZ9LjX0pUtKwACoEBP9GWt3Q7iFokFM6zPL_ukF4T37KIZF03VPZeYngMGdFYey_eg-Argrfitzo5btlZgddxSJLVN6PzbzY-1yKUANMq76Y9fDSWtlNuufJ7u7vKCHYSac');
-        background-size: cover;
-        background-position: center top;
-        animation: heroZoom 20s ease-in-out infinite alternate;
-    }
-    @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.08); } }
-</style>
-</head>
-<body class="bg-surface text-on-surface min-h-screen font-body overflow-x-hidden">
 
-<script>const WHATSAPP_NUMBER = '351XXXXXXXXX';</script>
-<script>const WHATSAPP_URL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9';</script>
-
-<!-- Mobile Menu Drawer -->
-<div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
-<div class="mobile-menu-drawer" id="menuDrawer">
-<button class="absolute top-4 right-4 text-on-surface-variant hover:text-accent transition-colors" onclick="toggleMobileMenu()" aria-label="Close menu"><span class="material-symbols-outlined text-2xl">close</span></button>
-<nav class="flex flex-col gap-6">
-<a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Home</a>
-<a href="#story" class="nav-link" onclick="toggleMobileMenu()">Our Story</a>
-<a href="#best-sellers" class="nav-link" onclick="toggleMobileMenu()">Best Sellers</a>
-<a href="#hours" class="nav-link" onclick="toggleMobileMenu()">Hours</a>
-<a href="#visit" class="nav-link" onclick="toggleMobileMenu()">Visit</a>
-</nav>
-<div class="mt-8">
-<a href="menu.html" class="btn-outline" onclick="toggleMobileMenu()">View Menu</a>
-</div>
-</div>
-
-<!-- Header -->
-<header class="site-header fixed" id="siteHeader">
-<div class="container flex justify-between items-center py-4">
-<a href="index.html" class="brand-mark">
-<img class="w-9 h-9" src="assets/logo.png" alt="KOFFIE ART"/>
-<span class="brand-mark-text">KOFFIE ART</span>
-</a>
-<div class="flex items-center gap-8">
-<nav class="hidden md:flex items-center gap-8">
-<a class="nav-link" href="#story">Story</a>
-<a class="nav-link" href="#best-sellers">Best Sellers</a>
-<a class="nav-link" href="#hours">Hours</a>
-</nav>
-<a href="#visit" class="btn-outline hidden md:inline-flex py-2 px-5 text-xs">Visit</a>
-<button class="md:hidden text-on-surface-variant p-1" onclick="toggleMobileMenu()" aria-label="Menu"><span class="material-symbols-outlined text-xl">menu</span></button>
-</div>
-</div>
-</header>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-<div class="hero__body">
-<p class="hero__tagline reveal-left">Speciality Coffee</p>
-<h1 class="display-xl text-on-surface leading-none mb-0 reveal-left stagger-1">
-KOFFIE<br/><span class="brand-gradient-text">ART</span>
-</h1>
-<div class="hairline mt-8 mb-8 reveal-left stagger-2" style="width:80px; background:var(--accent);"></div>
-<p class="hero__subtitle body-lg text-on-surface-variant mb-8 reveal-left stagger-2">
-A destination for specialty coffee in Mansoura. Where craft meets atmosphere � curated for observation, reflection, and taste.
-</p>
-<div class="hero__actions reveal-left stagger-3">
-<a href="menu.html" class="btn-primary">Explore Menu</a>
-<a href="#visit" class="btn-outline">Visit Us</a>
-</div>
-</div>
-<div class="hero__media">
-<div class="hero__media-slot">
-</div>
-</div>
-<div class="hero__scroll">
-<span>Scroll</span>
-</div>
-</section>
-
-<!-- ===== STORY ===== -->
-<section class="section" id="story">
-<div class="container">
-<div class="editor-block editor-block--wide">
-<div class="reveal-left">
-<p class="section-label mb-4">Our Story</p>
-<h2 class="display-lg text-on-surface leading-tight mb-6">
-THE ART<br/>OF<br/>EXTRACTION
-</h2>
-</div>
-<div class="reveal-right">
-<p class="body-lg text-on-surface-variant mb-6">
-We approach coffee the way a director approaches film — with intention, precision, and an obsession with detail. Every pour is a scene, every roast a narrative arc. Sourced globally, curated for Mansoura.
-</p>
-<a href="menu.html" class="btn-ghost">
-Explore the menu
-<span class="material-symbols-outlined text-base align-middle">arrow_forward</span>
-</a>
-</div>
-</div>
-<div class="mt-12 md:mt-20 reveal">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-<div class="md:col-span-7 h-[300px] md:h-[420px] overflow-hidden">
-<div class="img-cover h-full"><div class="bg-cover bg-center w-full h-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmdfS4GnyVcrahmDOkg609w4IM5qt-T6RXSEQTjQPtxowLnihGUAhIMQnmr-Nd5NJVS_PwPLNZzWbJA-SaL6dbwYrwvU8yK-WRiH0lv2qt1y-PInHC4hLoYiEn8_nIeFaEvMMwpV_WcbtoX7QjGKf8IkUb-9ene9X__uuW8h9oak_JETVJPTv7yCpOPZkgMbf3K7ZGnNXmSEGGkdRJc81EJ5Wt3XbjISkOPgYJHUuADlfANmB90BOAqQ'); background-size: cover; background-position: center;"></div></div>
-</div>
-<div class="md:col-span-2 hidden md:block"></div>
-<div class="md:col-span-3 h-[200px] md:h-[300px] overflow-hidden">
-<div class="img-cover h-full"><div class="bg-cover bg-center w-full h-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvLxdBg7KdkQhYrdfrdwcxKdc8nseMZmCwssrxSq_Cq07qzlEWibuAHL-vBuBtz8D9bmDv2uY8ceWUvlNaFrWlnVcLcbHPlu3zYgAnQoTG1SOnkq8w_XfH7F_6Cs_ebSGj_KJSiexqDxYlkGEXKJ5sS0rSSxePD4GQSJsOEceHhVdwl8rgYMBX6sq-2vQcacbZjxRxdt_fHDKKHbZahitlDD29wZvtlKbztlxMyGdal0-PnDXePFwJVg'); background-size: cover; background-position: center;"></div></div>
-</div>
-</div>
-</div>
-<div class="mt-12 reveal">
-<div class="bg-surface-card border-t border-b border-on-surface/5 p-8 md:p-10">
-<span class="font-display text-display-md text-accent mb-2 block">01</span>
-<h3 class="font-label-caps text-label-caps text-on-surface uppercase tracking-[0.2em] mb-3">The Roastery</h3>
-<p class="body-md text-on-surface-variant">Small batch, high contrast roasting profiles designed to highlight terroir.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== BEST SELLERS ===== -->
-<section class="section" id="best-sellers">
-<div class="container">
-<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-<div class="reveal-left">
-<p class="section-label mb-3">Best Sellers</p>
-<h2 class="display-lg text-on-surface leading-tight">Handpicked,<br/>crafted daily.</h2>
-</div>
-<div class="reveal-right">
-<p class="body-md text-on-surface-variant max-w-sm">Three favorites, three stories.</p>
-</div>
-</div>
-<div class="products-grid">
-<div class="product-editorial reveal-scale stagger-1">
-<div class="product-editorial__image">
-<img src="https://picsum.photos/seed/koffie-latte/600/800" alt="Classic Latte" class="img-cover"/>
-</div>
-<div class="product-editorial__info">
-<p class="product-editorial__category">The Classic</p>
-<h3 class="product-editorial__name">Classic Latte</h3>
-<p class="product-editorial__desc">Velvety steamed milk over a double ristretto shot.</p>
-</div>
-</div>
-<div class="product-editorial reveal-scale stagger-2">
-<div class="product-editorial__image">
-<img src="https://picsum.photos/seed/koffie-coldbrew/600/800" alt="Cold Brew" class="img-cover"/>
-</div>
-<div class="product-editorial__info">
-<p class="product-editorial__category">The Bold</p>
-<h3 class="product-editorial__name">Cold Brew</h3>
-<p class="product-editorial__desc">24-hour slow drip. Dark, intense, and crystal clear.</p>
-</div>
-</div>
-<div class="product-editorial reveal-scale stagger-3">
-<div class="product-editorial__image">
-<img src="https://picsum.photos/seed/koffie-dessert/600/800" alt="Chocolate Torte" class="img-cover"/>
-</div>
-<div class="product-editorial__info">
-<p class="product-editorial__category">The Sweet</p>
-<h3 class="product-editorial__name">Chocolate Torte</h3>
-<p class="product-editorial__desc">70% dark chocolate ganache with a hint of sea salt.</p>
-</div>
-</div>
-</div>
-<div class="text-center mt-14 reveal">
-<a href="menu.html" class="btn-primary py-4 px-10">View Full Menu</a>
-</div>
-</div>
-</section>
-
-<!-- ===== HOURS ===== -->
-<section class="section" id="hours">
-<div class="container">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-<div class="reveal-left">
-<p class="section-label mb-3">Opening Hours</p>
-<h2 class="display-lg text-on-surface leading-tight mb-6">Open<br/>Today</h2>
-<div class="font-display text-[48px] md:text-[72px] text-on-surface leading-none mb-2">11:00</div>
-<div class="font-display text-[48px] md:text-[72px] text-accent leading-none mb-4">— 01:00</div>
-<p class="body-md text-on-surface-variant mb-2">Saturday — Thursday</p>
-<p class="font-label-caps text-label-caps text-on-surface-muted uppercase tracking-[0.2em]">Friday: 2:00 PM — 12:00 AM</p>
-</div>
-<div class="reveal-right">
-<div class="hours-panel border border-on-surface/5">
-<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Mon — Thu</span><span class="font-display text-display-md text-on-surface">8:00 — 23:00</span></div>
-<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Friday</span><span class="font-display text-display-md text-accent">14:00 — 00:00</span></div>
-<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Saturday</span><span class="font-display text-display-md text-on-surface">11:00 — 01:00</span></div>
-<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Sunday</span><span class="font-display text-display-md text-on-surface-variant">Closed</span></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== VISIT / CTA ===== -->
-<section class="section--flush overflow-hidden relative" id="visit" style="min-height: 500px;">
-<div class="absolute inset-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVz6pIpDnbB3rXYM4DnfG5v9bxUeTBa4EEuw-nnU3MhP4vyLhJPP5AaZ0LQBQ8hngelcvEaqU0zfxKSGyvYbdUT8fmVBpr7TraBQVbWWdKkJjijRCja6n0SOUTJ-M5pmJyDvVzCS6mRTgW76urX-n_yzbXeh3dnl_0ZXrWALRhqfaJZ9kKJX85k9MXSu3T88TxKOFLHcGYb-7gy_CrjcB-maMoOWfJB-nCAYPxhHo1TaFy7iYdNa_kTw'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
-<div class="absolute inset-0 bg-surface/85"></div>
-<div class="relative z-10 container py-section-gap text-center">
-<div class="reveal-scale">
-<div class="hairline mx-auto mb-8" style="width:80px; height:1px; background:var(--accent);"></div>
-<p class="section-label mb-4">Visit Us</p>
-<h2 class="display-xl text-on-surface leading-tight mb-6">YOUR NEXT<br/><span class="brand-gradient-text italic font-normal" style="font-style: italic;">COFFEE</span><br/>STARTS HERE</h2>
-<p class="body-lg text-on-surface-variant max-w-lg mx-auto mb-12">Located in the heart of Mansoura. Come in, take a seat, and let the atmosphere speak.</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<a href="https://wa.me/351XXXXXXXXX?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9" target="_blank" rel="noopener noreferrer" class="btn-whatsapp py-4 px-8 text-xs">
-<span class="material-symbols-outlined text-base">chat</span>
-Chat on WhatsApp
-</a>
-<a href="#hours" class="btn-outline">Opening Hours</a>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="site-footer">
-<div class="container flex flex-col items-center gap-6">
-<div class="flex items-center gap-3 mb-2">
-<img class="w-10 h-10" src="assets/logo.png" alt="KOFFIE ART"/>
-<span class="brand-mark-text">KOFFIE ART</span>
-</div>
-<nav class="flex gap-8">
-<a class="nav-link" href="#best-sellers">Best Sellers</a>
-<a class="nav-link" href="#story">Story</a>
-<a class="nav-link" href="#hours">Hours</a>
-<a class="nav-link" href="#visit">Visit</a>
-</nav>
-<div class="hairline w-24" style="background:var(--outline);"></div>
-<p class="font-label-caps text-label-caps text-on-surface-muted uppercase tracking-[0.2em] text-xs">© 2024 KOFFIE ART. SPECIALITY COFFEE, MANSOURA.</p>
-</div>
-</footer>
-
-<!-- Mobile Menu Script -->
-<script>
-function toggleMobileMenu() {
-    document.getElementById('menuOverlay').classList.toggle('active');
-    document.getElementById('menuDrawer').classList.toggle('active');
-}
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.getElementById('menuOverlay').classList.remove('active'); document.getElementById('menuDrawer').classList.remove('active'); } });
-
-// Scroll effect
-window.addEventListener('scroll', function() {
-    var header = document.getElementById('siteHeader');
-    if (window.scrollY > 50) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
-});
-
-// WhatsApp Links
-(function() {
-    var WHATSAPP_NUMBER = '351XXXXXXXXX';
-    document.querySelectorAll('[href*="wa.me"]').forEach(function(el) {
-        el.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9';
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const drawer = document.getElementById('menuDrawer');
+            if (drawer && drawer.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+            closeLightbox();
+        }
     });
-})();
 
-// Reveal Animations
-(function() {
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    // ── Header Scroll Blur & Shadow ──
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('siteHeader');
+        if (window.scrollY > 40) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }, { passive: true });
+
+    // ── Scroll Reveal Animations (IntersectionObserver) ──
+    (function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
+            observer.observe(el);
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(function(el) { observer.observe(el); });
-})();
-</script>
+    })();
+
+    // ── Africa/Cairo Timezone Open Status Logic ──
+    function getCairoTimeInfo() {
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'Africa/Cairo',
+            hour12: false,
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const parts = formatter.formatToParts(now);
+        const map = {};
+        parts.forEach(p => map[p.type] = p.value);
+        const hour = parseInt(map.hour, 10);
+        const minute = parseInt(map.minute, 10);
+        return {
+            weekday: map.weekday, // Sat, Sun, Mon, Tue, Wed, Thu, Fri
+            timeVal: hour + (minute / 60)
+        };
+    }
+
+    function initCafeLogic() {
+        try {
+            const timeInfo = getCairoTimeInfo();
+            const weekday = timeInfo.weekday;
+            const timeVal = timeInfo.timeVal;
+
+            // Find matching schedule in CAFE_CONFIG
+            const schedule = CAFE_CONFIG.weeklyHours.find(h => h.dayKey === weekday) || CAFE_CONFIG.weeklyHours[0];
+            
+            let isOpen = false;
+            let statusText = '';
+
+            if (schedule.close > 24) {
+                if (timeVal >= schedule.open || timeVal < (schedule.close - 24)) {
+                    isOpen = true;
+                    statusText = 'Open now · until ' + schedule.closeDisplay;
+                } else {
+                    isOpen = false;
+                    statusText = 'Closed · opens at ' + schedule.openDisplay;
+                }
+            } else {
+                if (timeVal >= schedule.open && timeVal < schedule.close) {
+                    isOpen = true;
+                    statusText = 'Open now · until ' + schedule.closeDisplay;
+                } else {
+                    isOpen = false;
+                    statusText = timeVal < schedule.open 
+                        ? 'Closed · opens at ' + schedule.openDisplay 
+                        : 'Closed · opens tomorrow ' + (weekday === 'Thu' ? '1:00 PM' : '10:00 AM');
+                }
+            }
+
+            // Update Hero Status Pill
+            const heroPill = document.getElementById('heroOpenStatus');
+            if (heroPill) {
+                const dotClass = isOpen ? 'status-dot--open' : 'status-dot--closed';
+                heroPill.innerHTML = '<span class="status-dot ' + dotClass + '" aria-hidden="true"></span><span class="status-text">' + statusText + '</span>';
+            }
+
+            // Update Schedule Card Pill
+            const schedPill = document.getElementById('scheduleOpenPill');
+            const schedText = document.getElementById('scheduleOpenText');
+            if (schedPill && schedText) {
+                const dot = schedPill.querySelector('.status-dot');
+                if (dot) {
+                    dot.className = 'status-dot ' + (isOpen ? 'status-dot--open' : 'status-dot--closed');
+                }
+                schedText.textContent = isOpen ? 'Open Today' : 'Closed Now';
+            }
+
+            // Populate Weekly Schedule List
+            const listEl = document.getElementById('weeklyHoursList');
+            if (listEl && CAFE_CONFIG.weeklyHours) {
+                listEl.innerHTML = CAFE_CONFIG.weeklyHours.map(item => {
+                    const isToday = item.dayKey === weekday;
+                    return `
+                        <li class="hours-row ${isToday ? 'hours-row--today' : ''}">
+                            <span class="hours-day">${item.day}</span>
+                            <span class="hours-time">${item.display}</span>
+                        </li>
+                    `;
+                }).join('');
+            }
+
+            // Bind Links & Contacts
+            const dirUrl = CAFE_CONFIG.mapsUrl;
+            const waUrl = 'https://wa.me/' + CAFE_CONFIG.whatsappNumber + '?text=' + encodeURIComponent(CAFE_CONFIG.whatsappDefaultMessage);
+            
+            document.querySelectorAll('[id*="Directions"]').forEach(el => el.href = dirUrl);
+            document.querySelectorAll('[id*="Whatsapp"]').forEach(el => el.href = waUrl);
+            document.querySelectorAll('[id*="Instagram"]').forEach(el => {
+                if (el.tagName === 'A') el.href = CAFE_CONFIG.instagramUrl;
+            });
+
+            const phoneEl = document.getElementById('locationPhoneBtn');
+            if (phoneEl) phoneEl.href = 'tel:' + CAFE_CONFIG.phone.replace(/\\s+/g, '');
+            const phoneText = document.getElementById('locationPhoneText');
+            if (phoneText) phoneText.textContent = CAFE_CONFIG.phoneDisplay;
+            const contactPhone = document.getElementById('contactPhoneLink');
+            if (contactPhone) {
+                contactPhone.href = 'tel:' + CAFE_CONFIG.phone.replace(/\\s+/g, '');
+                contactPhone.textContent = CAFE_CONFIG.phoneDisplay;
+            }
+
+            const addrText = document.getElementById('locationAddressText');
+            if (addrText) addrText.textContent = CAFE_CONFIG.address;
+            const footerAddr = document.getElementById('footerAddressText');
+            if (footerAddr) footerAddr.textContent = CAFE_CONFIG.addressShort || CAFE_CONFIG.address;
+
+            const ratingEl = document.getElementById('trustRating');
+            if (ratingEl) ratingEl.textContent = CAFE_CONFIG.rating;
+            const reviewsEl = document.getElementById('trustReviews');
+            if (reviewsEl) reviewsEl.textContent = CAFE_CONFIG.ratingReviews;
+            const sinceEl = document.getElementById('trustSinceYear');
+            if (sinceEl) sinceEl.textContent = 'Since ' + CAFE_CONFIG.sinceYear;
+
+        } catch (e) {
+            console.error('Cafe status error:', e);
+        }
+    }
+    initCafeLogic();
+
+    // ── Lightweight Lightbox Logic ──
+    let currentLightboxIdx = 0;
+
+    function openLightbox(index) {
+        if (!CAFE_CONFIG.galleryImages || !CAFE_CONFIG.galleryImages[index]) return;
+        currentLightboxIdx = index;
+        const item = CAFE_CONFIG.galleryImages[index];
+        const modal = document.getElementById('lightboxModal');
+        const img = document.getElementById('lightboxImg');
+        const cap = document.getElementById('lightboxCaption');
+        
+        img.src = item.src;
+        img.alt = item.alt;
+        cap.textContent = item.title + (item.caption ? ' — ' + item.caption : '');
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('lightboxModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function prevLightbox(e) {
+        if (e) e.stopPropagation();
+        if (!CAFE_CONFIG.galleryImages) return;
+        const total = CAFE_CONFIG.galleryImages.length;
+        currentLightboxIdx = (currentLightboxIdx - 1 + total) % total;
+        openLightbox(currentLightboxIdx);
+    }
+
+    function nextLightbox(e) {
+        if (e) e.stopPropagation();
+        if (!CAFE_CONFIG.galleryImages) return;
+        const total = CAFE_CONFIG.galleryImages.length;
+        currentLightboxIdx = (currentLightboxIdx + 1) % total;
+        openLightbox(currentLightboxIdx);
+    }
+
+    function handleLightboxClick(e) {
+        if (e.target.id === 'lightboxModal') {
+            closeLightbox();
+        }
+    }
+
+    // Keyboard support for Lightbox
+    document.addEventListener('keydown', function(e) {
+        const modal = document.getElementById('lightboxModal');
+        if (modal && modal.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') prevLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+        }
+    });
+
+    // Touch swipe support for mobile lightbox
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const lightboxModal = document.getElementById('lightboxModal');
+    if (lightboxModal) {
+        lightboxModal.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightboxModal.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextLightbox();
+            if (touchEndX - touchStartX > 50) prevLightbox();
+        }, { passive: true });
+    }
+    </script>
 </body>
 </html>
