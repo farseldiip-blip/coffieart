@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Menu — KOFFIE ART</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols=Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+<script id="tailwind-config">
+tailwind.config = {
+    theme: {
+        extend: {
+            "colors": {
+                "surface": "#F2EDE4", "surface-cream": "#E8E0D5", "surface-card": "#FDFBF8",
+                "surface-subtle": "#F5F0E8", "on-surface": "#3D2E24",
+                "on-surface-variant": "#6E6258", "on-surface-muted": "#9A8E82",
+                "accent": "#9E8868", "accent-warm": "#8A7660", "accent-deep": "#7A6858",
+                "outline": "#C8BDB0", "outline-soft": "#D4CBBE",
+                "brand-gradient": "linear-gradient(135deg, #9E8868, #8A7660, #7A6858)",
+            },
+            "borderRadius": { "DEFAULT": "0px", "sm": "0.125rem", "md": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+            "spacing": { "section-gap": "120px", "container-max": "1280px" },
+            "fontFamily": { "display": ["Bodoni Moda"], "body": ["Manrope"], "label-caps": ["Manrope"] },
+            "fontSize": {
+                "display-lg": ["clamp(36px,6vw,64px)", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                "display-md": ["clamp(28px,4vw,42px)", { "lineHeight": "1.05", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                "body-lg": ["18px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                "body-md": ["15px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.2em", "fontWeight": "700" }]
+            }
+        }
+    }
+}
+</script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen font-body overflow-x-hidden">
+
+<script>const WHATSAPP_NUMBER = '351XXXXXXXXX';</script>
+<script>const WHATSAPP_URL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9';</script>
+
+<!-- Mobile Menu Drawer -->
+<div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
+<div class="mobile-menu-drawer" id="menuDrawer">
+<button class="absolute top-4 right-4 text-on-surface-variant hover:text-accent transition-colors" onclick="toggleMobileMenu()" aria-label="Close menu"><span class="material-symbols-outlined text-2xl">close</span></button>
+<nav class="flex flex-col gap-6">
+<a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Home</a>
+<a href="#menu" class="nav-link" onclick="toggleMobileMenu()">Menu</a>
+<a href="#hours" class="nav-link" onclick="toggleMobileMenu()">Hours</a>
+<a href="#visit" class="nav-link" onclick="toggleMobileMenu()">Visit</a>
+</nav>
+<div class="mt-8">
+<a href="https://wa.me/351XXXXXXXXX?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9" target="_blank" rel="noopener noreferrer" class="btn-outline py-2 px-5 text-xs">ORDER VIA WHATSAPP</a>
+</div>
+</div>
+
+<!-- Header -->
+<header class="site-header fixed">
+<div class="container flex justify-between items-center py-4">
+<a href="index.html" class="brand-mark">
+<img class="w-9 h-9" src="assets/logo.png" alt="KOFFIE ART"/>
+<span class="brand-mark-text">KOFFIE ART</span>
+</a>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="nav-link" href="index.html">Home</a>
+<a class="nav-link" href="index.html#story">Story</a>
+</nav>
+<a href="index.html#visit" class="btn-outline hidden md:inline-flex py-2 px-5 text-xs">Visit</a>
+<button class="md:hidden text-on-surface-variant p-1" onclick="toggleMobileMenu()" aria-label="Menu"><span class="material-symbols-outlined text-xl">menu</span></button>
+</div>
+</div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main>
+
+<!-- Menu Hero -->
+<section class="menu-hero">
+<div class="container">
+<div class="reveal text-center">
+<p class="section-label mb-6">The Menu</p>
+<h1 class="display-xl text-on-surface leading-tight mb-4">The<br/><span class="brand-gradient-text italic font-normal" style="font-style: italic;">Menu</span></h1>
+<div class="hairline--accent mx-auto mb-6"></div>
+<p class="body-lg text-on-surface-variant max-w-md mx-auto">Crafted with precision, served with cinematic flair.</p>
+</div>
+</div>
+</section>
+
+<!-- ===== MENU CATALOG ===== -->
+<section class="section" id="menu">
+<div class="container">
+<div class="menu-viewer">
+
+<!-- Menu Page 1 — Coffee & Drinks -->
+<div class="menu-page reveal-scale stagger-1">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_1.webp" alt="KOFFIE ART Menu — Coffee & Drinks" loading="lazy"/>
+</div>
+
+<!-- Menu Page 2 — Food & Breakfast -->
+<div class="menu-page reveal-scale stagger-2">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_2.webp" alt="KOFFIE ART Menu — Food & Breakfast" loading="lazy"/>
+</div>
+
+<!-- Menu Page 3 — Desserts & Drinks -->
+<div class="menu-page reveal-scale stagger-3">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_3.webp" alt="KOFFIE ART Menu — Desserts & Drinks" loading="lazy"/>
+</div>
+
+<!-- Menu Page 4 -->
+<div class="menu-page reveal-scale stagger-4">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_4.webp" alt="KOFFIE ART Menu" loading="lazy"/>
+</div>
+
+<!-- Menu Page 5 -->
+<div class="menu-page reveal-scale stagger-5">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_5.webp" alt="KOFFIE ART Menu" loading="lazy"/>
+</div>
+
+<!-- Menu Page 6 -->
+<div class="menu-page reveal-scale">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_6.webp" alt="KOFFIE ART Menu" loading="lazy"/>
+</div>
+
+<!-- Menu Page 7 -->
+<div class="menu-page reveal-scale">
+<div class="menu-page__frame"></div>
+<img src="assets/menu_images/page_7.webp" alt="KOFFIE ART Menu" loading="lazy"/>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Atmospheric Image Break -->
+<section class="image-break section--narrow letterbox-top letterbox-bottom" style="min-height: 300px;">
+<div class="image-break__image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVz6pIpDnbB3rXYM4DnfG5v9bxUeTBa4EEuw-nnU3MhP4vyLhJPP5AaZ0LQBQ8hngelcvEaqU0zfxKSGyvYbdUT8fmVBpr7TraBQVbWWdKkJjijRCja6n0SOUTJ-M5pmJyDvVzCS6mRTgW76urX-n_yzbXeh3dnl_0ZXrWALRhqfaJZ9kKJX85k9MXSu3T88TxKOFLHcGYb-7gy_CrjcB-maMoOWfJB-nCAYPxhHo1TaFy7iYdNa_kTw'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+<div class="image-break__overlay"></div>
+<div class="relative z-10 container text-center">
+<div class="reveal-scale">
+<div class="deco-ring mx-auto mb-6"></div>
+<p class="section-label mb-4">The Atmosphere</p>
+<p class="body-lg text-on-surface-variant max-w-lg mx-auto">Where every cup tells a story. A space designed for observation, reflection, and taste.</p>
+</div>
+</div>
+</section>
+
+<!-- ===== HOURS ===== -->
+<section class="section" id="hours">
+<div class="container">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+<div class="reveal-left">
+<p class="section-label mb-3">Opening Hours</p>
+<h2 class="display-lg text-on-surface leading-tight mb-6">Open<br/>Today</h2>
+<div class="font-display text-[48px] md:text-[72px] text-on-surface leading-none mb-2">11:00</div>
+<div class="font-display text-[48px] md:text-[72px] text-accent leading-none mb-4">— 01:00</div>
+<p class="body-md text-on-surface-variant mb-2">Saturday — Thursday</p>
+<p class="font-label-caps text-label-caps text-on-surface-muted uppercase tracking-[0.2em]">Friday: 2:00 PM — 12:00 AM</p>
+</div>
+<div class="reveal-right">
+<div class="hours-panel">
+<div class="flex flex-col gap-0">
+<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Mon — Thu</span><span class="font-display text-display-md text-on-surface">8:00 — 23:00</span></div>
+<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Friday</span><span class="font-display text-display-md text-accent">14:00 — 00:00</span></div>
+<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Saturday</span><span class="font-display text-display-md text-on-surface">11:00 — 01:00</span></div>
+<div class="flex justify-between items-center hours-row"><span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Sunday</span><span class="font-display text-display-md text-on-surface-variant">Closed</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== VISIT / CTA ===== -->
+<section class="section--flush overflow-hidden relative" id="visit" style="min-height: 500px;">
+<div class="absolute inset-0" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCVz6pIpDnbB3rXYM4DnfG5v9bxUeTBa4EEuw-nnU3MhP4vyLhJPP5AaZ0LQBQ8hngelcvEaqU0zfxKSGyvYbdUT8fmVBpr7TraBQVbWWdKkJjijRCja6n0SOUTJ-M5pmJyDvVzCS6mRTgW76urX-n_yzbXeh3dnl_0ZXrWALRhqfaJZ9kKJX85k9MXSu3T88TxKOFLHcGYb-7gy_CrjcB-maMoOWfJB-nCAYPxhHo1TaFy7iYdNa_kTw'); background-size: cover; background-position: center; background-attachment: fixed;"></div>
+<div class="absolute inset-0 bg-surface/85"></div>
+<div class="relative z-10 container py-section-gap text-center">
+<div class="reveal-scale">
+<div class="hairline--accent mx-auto mb-6"></div>
+<p class="section-label mb-4">Visit Us</p>
+<h2 class="display-xl text-on-surface leading-tight mb-4">YOUR NEXT<br/><span class="brand-gradient-text italic font-normal" style="font-style: italic;">COFFEE</span><br/>STARTS HERE</h2>
+<p class="body-lg text-on-surface-variant max-w-lg mx-auto mb-12">Located in the heart of Mansoura. Come in, take a seat, and let the atmosphere speak.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a href="https://wa.me/351XXXXXXXXX?text=Ol%C3%A1!Gostaria+de+informa%C3%A7%C3%B5es+sobre+o+card%C3%A1pio+do+KOFFIE+ART+Caf%C3%A9" target="_blank" rel="noopener noreferrer" class="btn-whatsapp py-4 px-8 text-xs">
+<span class="material-symbols-outlined text-base">chat</span>
+Chat on WhatsApp
+</a>
+<a href="#hours" class="btn-outline">Opening Hours</a>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+<div class="container flex flex-col items-center gap-6">
+<div class="flex items-center gap-3 mb-2">
+<img class="w-10 h-10" src="assets/logo.png" alt="KOFFIE ART"/>
+<span class="brand-mark-text">KOFFIE ART</span>
+</div>
+<nav class="flex gap-8">
+<a class="nav-link" href="index.html#menu">Menu</a>
+<a class="nav-link" href="index.html#story">Story</a>
+<a class="nav-link" href="index.html#hours">Hours</a>
+<a class="nav-link" href="index.html#visit">Visit</a>
+</nav>
+<div class="hairline--accent w-24" style="background:#C8BDB0;"></div>
+<p class="font-label-caps text-label-caps text-on-surface-muted uppercase tracking-[0.2em] text-xs">© 2024 KOFFIE ART. SPECIALITY COFFEE, MANSOURA.</p>
+</div>
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+function toggleMobileMenu() {
+    document.getElementById('menuOverlay').classList.toggle('active');
+    document.getElementById('menuDrawer').classList.toggle('active');
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { document.getElementById('menuOverlay').classList.remove('active'); document.getElementById('menuDrawer').classList.remove('active'); } });
+
+// Reveal Animations
+(function() {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(function(el) { observer.observe(el); });
+})();
+</script>
+</body>
+</html>
