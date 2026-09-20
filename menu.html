@@ -4,13 +4,13 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Menu — KOFFIE ART Specialty Coffee, Mansoura</title>
-    <meta name="description" content="Explore the full menu of KOFFIE ART in Mansoura, Egypt: V60 pour-overs, manual brews, artisan espresso, Spanish lattes, and fresh Basque cheesecakes."/>
+    <meta name="description" content="Explore the full specialty coffee and dessert menu for KOFFIE ART in Mansoura, Egypt."/>
 
     <!-- Open Graph / Social Meta -->
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Full Menu — KOFFIE ART Specialty Coffee"/>
-    <meta property="og:description" content="Artisan espresso, single-origin filter brews, and daily baked desserts in Mansoura."/>
-    <meta property="og:image" content="assets/products/spanish_latte.jpg"/>
+    <meta property="og:title" content="Menu — KOFFIE ART Specialty Coffee"/>
+    <meta property="og:description" content="Explore the full menu of KOFFIE ART in Mansoura, Egypt."/>
+    <meta property="og:image" content="assets/menu_pages/page_1.png"/>
     <meta property="og:url" content="https://koffieart.com/menu.html"/>
 
     <!-- Favicon -->
@@ -38,40 +38,8 @@
 </head>
 <body>
 
-    <!-- Central Configuration Object -->
-    <script src="js/config.js"></script>
-
-    <!-- Mobile Menu Overlay & Drawer -->
-    <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()" aria-hidden="true"></div>
-    <div class="mobile-menu-drawer" id="menuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
-            <span class="material-symbols-outlined text-2xl">close</span>
-        </button>
-        <div class="mobile-nav-top">
-            <div class="brand-mark mb-8">
-                <span class="brand-mark-logo-wrap">
-                    <img src="assets/logo.png" alt="KOFFIE ART logo" width="38" height="38"/>
-                </span>
-                <span class="brand-mark-text">KOFFIE ART</span>
-            </div>
-            <nav class="mobile-nav-list" aria-label="Mobile Menu Links">
-                <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
-                <a href="#menu-catalog" class="mobile-nav-link" onclick="toggleMobileMenu()">Menu</a>
-                <a href="index.html#gallery" class="mobile-nav-link" onclick="toggleMobileMenu()">Gallery</a>
-                <a href="index.html#visit" class="mobile-nav-link" onclick="toggleMobileMenu()">Visit</a>
-                <a href="index.html#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
-            </nav>
-        </div>
-        <div class="mobile-nav-bottom">
-            <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="btn-primary w-full text-center" id="drawerWhatsappBtn">
-                <span class="material-symbols-outlined text-base">chat</span>
-                <span>Order via WhatsApp</span>
-            </a>
-        </div>
-    </div>
-
     <!-- Header (Sticky) -->
-    <header class="site-header scrolled" id="siteHeader">
+    <header class="site-header fixed scrolled" id="siteHeader">
         <div class="container site-header__wrap">
             <a href="index.html" class="brand-mark" aria-label="KOFFIE ART Home">
                 <span class="brand-mark-logo-wrap">
@@ -96,57 +64,106 @@
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay & Drawer -->
+    <div class="mobile-menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()" aria-hidden="true"></div>
+    <div class="mobile-menu-drawer" id="menuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <div class="mobile-nav-top">
+            <div class="brand-mark mb-8">
+                <span class="brand-mark-logo-wrap">
+                    <img src="assets/logo.png" alt="KOFFIE ART logo" width="38" height="38"/>
+                </span>
+                <span class="brand-mark-text">KOFFIE ART</span>
+            </div>
+            <nav class="mobile-nav-list" aria-label="Mobile Menu Links">
+                <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+                <a href="menu.html" class="mobile-nav-link active" onclick="toggleMobileMenu()">Menu</a>
+                <a href="index.html#gallery" class="mobile-nav-link" onclick="toggleMobileMenu()">Gallery</a>
+                <a href="index.html#visit" class="mobile-nav-link" onclick="toggleMobileMenu()">Visit</a>
+                <a href="index.html#contact" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Sticky Category Tabs Bar under header -->
+    <nav class="menu-sticky-tabs-bar" id="menuTabsBar" aria-label="Menu Categories" role="tablist">
+        <div class="menu-tabs-scroll" id="menuTabsScroll">
+            <!-- Dynamically populated from MENU_IMAGES -->
+        </div>
+    </nav>
+
     <main id="mainContent">
 
-        <!-- Menu Header -->
-        <section class="menu-page-header section--bg">
-            <div class="container">
-                <p class="section-label">Specialty Offerings</p>
-                <h1 class="section-heading" style="margin-bottom: 12px;">The Full Menu</h1>
-                <p class="section-intro" style="margin-inline: auto; margin-bottom: 24px;">
-                    Roasted in-house with precise extraction ratios. Choose your favorite brew or ask your barista for today's single-origin recommendation.
-                </p>
-
-                <!-- Navigation & Action Links -->
-                <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
-                    <a href="index.html" class="btn-outline" style="min-height: 42px; padding: 10px 20px; font-size: 11px;">
-                        <span class="material-symbols-outlined text-sm">arrow_back</span>
-                        <span>Back to Home</span>
-                    </a>
-                    <a href="https://wa.me/351XXXXXXXXX?text=Hi%20KOFFIE%20ART%2C%20I%27d%20like%20to%20order%20from%20the%20menu" target="_blank" rel="noopener noreferrer" class="btn-primary" id="menuPageWhatsappBtn" style="min-height: 42px; padding: 10px 22px; font-size: 11px;">
-                        <span class="material-symbols-outlined text-sm">chat</span>
-                        <span>Order via WhatsApp</span>
-                    </a>
-                </div>
+        <!-- Top Section: Centered "Back to Home" Button -->
+        <section class="menu-page-header">
+            <div class="container" style="display: flex; justify-content: center;">
+                <a href="index.html" class="btn-outline menu-back-btn" id="menuBackBtn">
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_back</span>
+                    <span>Back to Home</span>
+                </a>
             </div>
         </section>
 
-        <!-- Sticky Category Nav Tabs -->
-        <nav class="menu-sticky-nav" aria-label="Menu Category Tabs">
-            <div class="container">
-                <div class="category-pills" id="categoryTabs">
-                    <!-- Populated dynamically from CAFE_CONFIG.menuCategories -->
+        <!-- Horizontal Swipe Carousel Section -->
+        <section class="section menu-carousel-section" aria-label="KOFFIE ART Menu Carousel">
+            <div class="menu-carousel-wrapper">
+                <!-- Prev Button (>= 768px screens) -->
+                <button type="button" class="menu-carousel-nav-btn menu-carousel-prev" id="carouselPrevBtn" aria-label="Previous menu page" title="Previous page">
+                    <span class="material-symbols-outlined text-2xl" aria-hidden="true">chevron_left</span>
+                </button>
+
+                <!-- Scroll-snap Track -->
+                <div class="menu-carousel-track" id="menuCarouselTrack" tabindex="0" role="region" aria-label="Menu pages carousel">
+                    <!-- Populated dynamically from MENU_IMAGES array -->
                 </div>
-            </div>
-        </nav>
 
-        <!-- Menu Catalog Sections (Data-Driven from CAFE_CONFIG) -->
-        <section class="section section--bg-alt" id="menu-catalog">
-            <div class="container" id="menuCategoriesContainer">
-                <!-- Dynamically populated from CAFE_CONFIG.menuCategories -->
+                <!-- Next Button (>= 768px screens) -->
+                <button type="button" class="menu-carousel-nav-btn menu-carousel-next" id="carouselNextBtn" aria-label="Next menu page" title="Next page">
+                    <span class="material-symbols-outlined text-2xl" aria-hidden="true">chevron_right</span>
+                </button>
             </div>
-        </section>
 
-        <!-- Printed Menu Footer Notice -->
-        <section class="section section--bg" style="padding-block: 40px; text-align: center;">
-            <div class="container">
-                <p style="color: var(--muted); font-size: 13.5px; max-width: 500px; margin-inline: auto;">
-                    Prices are in Egyptian Pounds (EGP) and inclusive of all taxes. Dairy alternatives (Oat, Almond) available upon request.
-                </p>
+            <!-- Page Counter under image: "1 / 7" -->
+            <div class="menu-carousel-counter-wrap">
+                <span class="menu-carousel-counter" id="carouselCounter" aria-live="polite" aria-atomic="true">1 / 7</span>
             </div>
         </section>
 
     </main>
+
+    <!-- Full-Screen Zoom Viewer Modal -->
+    <div class="menu-zoom-modal" id="menuZoomModal" role="dialog" aria-modal="true" aria-label="Menu Page Zoom Viewer" tabindex="-1">
+        <div class="menu-zoom-header">
+            <span class="menu-zoom-indicator" id="zoomPageIndicator">Page 1 of 7</span>
+            <div class="menu-zoom-controls">
+                <button type="button" class="menu-zoom-btn" id="zoomOutBtn" aria-label="Zoom out" title="Zoom out">
+                    <span class="material-symbols-outlined text-xl">remove</span>
+                </button>
+                <button type="button" class="menu-zoom-btn" id="zoomInBtn" aria-label="Zoom in" title="Zoom in">
+                    <span class="material-symbols-outlined text-xl">add</span>
+                </button>
+                <button type="button" class="menu-zoom-btn" id="zoomResetBtn" aria-label="Reset zoom" title="Reset zoom">
+                    <span class="material-symbols-outlined text-xl">restart_alt</span>
+                </button>
+                <button type="button" class="menu-zoom-btn" id="zoomCloseBtn" aria-label="Close zoom viewer" title="Close viewer">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+        </div>
+        <div class="menu-zoom-viewport" id="zoomViewport">
+            <button type="button" class="menu-zoom-nav-btn menu-zoom-prev" id="zoomPrevBtn" aria-label="Previous menu page" title="Previous page">
+                <span class="material-symbols-outlined text-2xl">chevron_left</span>
+            </button>
+            <div class="menu-zoom-stage" id="zoomStage">
+                <img id="zoomImg" src="assets/menu_pages/page_1.png" alt="KOFFIE ART menu page" draggable="false"/>
+            </div>
+            <button type="button" class="menu-zoom-nav-btn menu-zoom-next" id="zoomNextBtn" aria-label="Next menu page" title="Next page">
+                <span class="material-symbols-outlined text-2xl">chevron_right</span>
+            </button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -195,134 +212,533 @@
         </div>
     </footer>
 
-    <!-- Mobile Sticky Bottom Action Bar -->
-    <nav class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
-        <a href="index.html" class="bottom-bar-btn">
-            <span class="material-symbols-outlined" aria-hidden="true">home</span>
-            <span>Home</span>
-        </a>
-        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn" id="mobileDirectionsBtn">
-            <span class="material-symbols-outlined" aria-hidden="true">near_me</span>
-            <span>Directions</span>
-        </a>
-        <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn bottom-bar-btn--whatsapp" id="mobileWhatsappBtn">
-            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
-            <span>WhatsApp</span>
-        </a>
-    </nav>
-
-    <!-- Dynamic Menu Rendering Script -->
+    <!-- Menu Carousel & Zoom Viewer Script -->
     <script>
-    // ── Mobile Menu Toggle ──
+    // ── 1. Image Data Array with Category Labels ──
+    const MENU_IMAGES = [
+        { src: "assets/menu_pages/page_1.png", alt: "KOFFIE ART menu, page 1 of 7", label: "Hot Drinks", width: 2168, height: 3840 },
+        { src: "assets/menu_pages/page_2.png", alt: "KOFFIE ART menu, page 2 of 7", label: "TODO: Page 2", width: 2160, height: 3840 },
+        { src: "assets/menu_pages/page_3.png", alt: "KOFFIE ART menu, page 3 of 7", label: "TODO: Page 3", width: 2175, height: 3835 },
+        { src: "assets/menu_pages/page_4.png", alt: "KOFFIE ART menu, page 4 of 7", label: "TODO: Page 4", width: 2160, height: 3840 },
+        { src: "assets/menu_pages/page_5.png", alt: "KOFFIE ART menu, page 5 of 7", label: "TODO: Page 5", width: 2222, height: 3921 },
+        { src: "assets/menu_pages/page_6.png", alt: "KOFFIE ART menu, page 6 of 7", label: "TODO: Page 6", width: 2160, height: 3840 },
+        { src: "assets/menu_pages/page_7.png", alt: "KOFFIE ART menu, page 7 of 7", label: "TODO: Page 7", width: 2160, height: 3840 }
+    ];
+    window.MENU_IMAGES = MENU_IMAGES;
+
+    // ── 2. Mobile Drawer Navigation ──
     function toggleMobileMenu() {
         const overlay = document.getElementById('menuOverlay');
         const drawer = document.getElementById('menuDrawer');
+        if (!overlay || !drawer) return;
         const isActive = drawer.classList.toggle('active');
         overlay.classList.toggle('active');
         document.body.style.overflow = isActive ? 'hidden' : '';
     }
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const drawer = document.getElementById('menuDrawer');
-            if (drawer && drawer.classList.contains('active')) {
-                toggleMobileMenu();
+    // ── 3. DOM Elements ──
+    const tabsContainer = document.getElementById('menuTabsScroll');
+    const carouselTrack = document.getElementById('menuCarouselTrack');
+    const carouselCounter = document.getElementById('carouselCounter');
+    const prevArrowBtn = document.getElementById('carouselPrevBtn');
+    const nextArrowBtn = document.getElementById('carouselNextBtn');
+
+    let currentSlideIndex = 0;
+    let isProgrammaticScroll = false;
+    let scrollTimeout = null;
+
+    // ── 4. Render Sticky Category Tabs ──
+    function renderTabs() {
+        if (!tabsContainer) return;
+        tabsContainer.innerHTML = MENU_IMAGES.map((item, index) => {
+            const isFirst = index === 0;
+            return `
+                <button type="button" 
+                        class="menu-tab-btn ${isFirst ? 'active' : ''}" 
+                        role="tab" 
+                        id="tab-${index}" 
+                        aria-selected="${isFirst ? 'true' : 'false'}" 
+                        aria-controls="slide-${index}" 
+                        data-index="${index}">
+                    ${item.label || `Page ${index + 1}`}
+                </button>
+            `;
+        }).join('');
+
+        tabsContainer.querySelectorAll('.menu-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.getAttribute('data-index'), 10);
+                scrollToSlide(idx);
+            });
+        });
+    }
+
+    // ── 5. Render Carousel Slides ──
+    function renderCarousel() {
+        if (!carouselTrack) return;
+        carouselTrack.innerHTML = MENU_IMAGES.map((img, index) => {
+            // First 2 images loading="eager", rest loading="lazy"
+            const isEager = index < 2;
+            const loadingAttr = isEager ? 'loading="eager"' : 'loading="lazy"';
+            const fetchPriorityAttr = index === 0 ? 'fetchpriority="high"' : '';
+            const width = img.width || 2160;
+            const height = img.height || 3840;
+
+            return `
+                <div class="menu-carousel-slide" 
+                     id="slide-${index}" 
+                     role="group" 
+                     aria-roledescription="slide" 
+                     aria-label="Page ${index + 1} of ${MENU_IMAGES.length}: ${img.label || ''}" 
+                     data-index="${index}">
+                    <figure class="menu-carousel-card" 
+                            tabindex="0" 
+                            role="button" 
+                            aria-label="Open ${img.alt} full screen" 
+                            data-index="${index}">
+                        <img src="${img.src}" 
+                             alt="${img.alt}" 
+                             width="${width}" 
+                             height="${height}" 
+                             ${loadingAttr} 
+                             ${fetchPriorityAttr} 
+                             decoding="async"/>
+                    </figure>
+                </div>
+            `;
+        }).join('');
+
+        // Attach zoom trigger on tap/click and keyboard
+        carouselTrack.querySelectorAll('.menu-carousel-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const idx = parseInt(card.getAttribute('data-index'), 10);
+                openZoomModal(idx);
+            });
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const idx = parseInt(card.getAttribute('data-index'), 10);
+                    openZoomModal(idx);
+                }
+            });
+        });
+    }
+
+    // ── 6. Carousel Synchronization & UI Updates ──
+    function updateActiveState(index) {
+        currentSlideIndex = index;
+
+        // Counter: "2 / 7"
+        if (carouselCounter) {
+            carouselCounter.textContent = `${index + 1} / ${MENU_IMAGES.length}`;
+        }
+
+        // Prev/Next Arrow Buttons (disabled at ends)
+        if (prevArrowBtn) {
+            const isFirst = index === 0;
+            prevArrowBtn.disabled = isFirst;
+            prevArrowBtn.setAttribute('aria-disabled', isFirst ? 'true' : 'false');
+        }
+        if (nextArrowBtn) {
+            const isLast = index === MENU_IMAGES.length - 1;
+            nextArrowBtn.disabled = isLast;
+            nextArrowBtn.setAttribute('aria-disabled', isLast ? 'true' : 'false');
+        }
+
+        // Highlight Active Tab & Auto-scroll into view
+        const tabs = tabsContainer ? tabsContainer.querySelectorAll('.menu-tab-btn') : [];
+        tabs.forEach((tab, i) => {
+            const isActive = i === index;
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            if (isActive) {
+                const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                tab.scrollIntoView({
+                    inline: 'center',
+                    behavior: isReducedMotion ? 'auto' : 'smooth',
+                    block: 'nearest'
+                });
+            }
+        });
+    }
+
+    function scrollToSlide(index) {
+        if (index < 0 || index >= MENU_IMAGES.length) return;
+        const slides = carouselTrack ? carouselTrack.querySelectorAll('.menu-carousel-slide') : [];
+        const targetSlide = slides[index];
+        if (!targetSlide) return;
+
+        isProgrammaticScroll = true;
+        clearTimeout(scrollTimeout);
+
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        targetSlide.scrollIntoView({
+            inline: 'center',
+            behavior: isReducedMotion ? 'auto' : 'smooth',
+            block: 'nearest'
+        });
+
+        updateActiveState(index);
+
+        scrollTimeout = setTimeout(() => {
+            isProgrammaticScroll = false;
+        }, 600);
+    }
+
+    // ── 7. IntersectionObserver for Swiping ──
+    function setupCarouselObserver() {
+        if (!carouselTrack) return;
+        const slides = carouselTrack.querySelectorAll('.menu-carousel-slide');
+
+        const observer = new IntersectionObserver((entries) => {
+            if (isProgrammaticScroll) return;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = parseInt(entry.target.getAttribute('data-index'), 10);
+                    updateActiveState(idx);
+                }
+            });
+        }, {
+            root: carouselTrack,
+            threshold: 0.55
+        });
+
+        slides.forEach(slide => observer.observe(slide));
+    }
+
+    // Arrow button click handlers
+    if (prevArrowBtn) {
+        prevArrowBtn.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                scrollToSlide(currentSlideIndex - 1);
+            }
+        });
+    }
+
+    if (nextArrowBtn) {
+        nextArrowBtn.addEventListener('click', () => {
+            if (currentSlideIndex < MENU_IMAGES.length - 1) {
+                scrollToSlide(currentSlideIndex + 1);
+            }
+        });
+    }
+
+    // ── 8. Full-Screen Zoom Viewer Logic ──
+    let currentZoomIndex = 0;
+    let zoomScale = 1;
+    const minZoomScale = 1;
+    const maxZoomScale = 4;
+    let panX = 0;
+    let panY = 0;
+    let isPanning = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    let lastActiveElement = null;
+
+    let touchStartDist = 0;
+    let touchInitialScale = 1;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isSwipingDown = false;
+
+    const zoomModal = document.getElementById('menuZoomModal');
+    const zoomViewport = document.getElementById('zoomViewport');
+    const zoomStage = document.getElementById('zoomStage');
+    const zoomImg = document.getElementById('zoomImg');
+    const zoomIndicator = document.getElementById('zoomPageIndicator');
+    const zoomCloseBtn = document.getElementById('zoomCloseBtn');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const zoomResetBtn = document.getElementById('zoomResetBtn');
+    const zoomPrevBtn = document.getElementById('zoomPrevBtn');
+    const zoomNextBtn = document.getElementById('zoomNextBtn');
+
+    function applyStageTransform(animated = false) {
+        const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (animated && !isReducedMotion) {
+            zoomStage.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)';
+        } else {
+            zoomStage.style.transition = 'none';
+        }
+        zoomStage.style.transform = `translate(${panX}px, ${panY}px) scale(${zoomScale})`;
+        zoomViewport.classList.toggle('dragging', isPanning);
+    }
+
+    function resetZoomState(animated = false) {
+        zoomScale = 1;
+        panX = 0;
+        panY = 0;
+        applyStageTransform(animated);
+    }
+
+    function updateZoomModalContent() {
+        const item = MENU_IMAGES[currentZoomIndex];
+        if (!item) return;
+
+        zoomImg.src = item.src;
+        zoomImg.alt = item.alt;
+        zoomIndicator.textContent = `${item.label || 'Page ' + (currentZoomIndex + 1)} · ${currentZoomIndex + 1} / ${MENU_IMAGES.length}`;
+
+        const isFirst = currentZoomIndex === 0;
+        const isLast = currentZoomIndex === MENU_IMAGES.length - 1;
+        zoomPrevBtn.style.opacity = isFirst ? '0.35' : '1';
+        zoomPrevBtn.style.pointerEvents = isFirst ? 'none' : 'auto';
+        zoomPrevBtn.setAttribute('aria-disabled', isFirst ? 'true' : 'false');
+
+        zoomNextBtn.style.opacity = isLast ? '0.35' : '1';
+        zoomNextBtn.style.pointerEvents = isLast ? 'none' : 'auto';
+        zoomNextBtn.setAttribute('aria-disabled', isLast ? 'true' : 'false');
+    }
+
+    function openZoomModal(index) {
+        lastActiveElement = document.activeElement;
+        currentZoomIndex = Math.max(0, Math.min(index, MENU_IMAGES.length - 1));
+        resetZoomState(false);
+        updateZoomModalContent();
+
+        zoomModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        if (zoomCloseBtn) zoomCloseBtn.focus();
+    }
+
+    function closeZoomModal() {
+        zoomModal.classList.remove('active');
+        document.body.style.overflow = '';
+        resetZoomState(false);
+
+        // Keep carousel synchronized with the page viewed in zoom
+        if (currentZoomIndex !== currentSlideIndex) {
+            scrollToSlide(currentZoomIndex);
+        }
+
+        if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+            lastActiveElement.focus();
+        }
+    }
+
+    function zoomIn() {
+        zoomScale = Math.min(maxZoomScale, zoomScale + 0.5);
+        applyStageTransform(true);
+    }
+
+    function zoomOut() {
+        zoomScale = Math.max(minZoomScale, zoomScale - 0.5);
+        if (zoomScale === 1) {
+            panX = 0;
+            panY = 0;
+        }
+        applyStageTransform(true);
+    }
+
+    function goToPrevZoomPage() {
+        if (currentZoomIndex > 0) {
+            currentZoomIndex--;
+            resetZoomState(true);
+            updateZoomModalContent();
+        }
+    }
+
+    function goToNextZoomPage() {
+        if (currentZoomIndex < MENU_IMAGES.length - 1) {
+            currentZoomIndex++;
+            resetZoomState(true);
+            updateZoomModalContent();
+        }
+    }
+
+    if (zoomCloseBtn) zoomCloseBtn.addEventListener('click', closeZoomModal);
+    if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+    if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+    if (zoomResetBtn) zoomResetBtn.addEventListener('click', () => resetZoomState(true));
+    if (zoomPrevBtn) zoomPrevBtn.addEventListener('click', goToPrevZoomPage);
+    if (zoomNextBtn) zoomNextBtn.addEventListener('click', goToNextZoomPage);
+
+    // Double-tap zoom toggle
+    let lastTapTime = 0;
+    zoomViewport.addEventListener('click', (e) => {
+        if (e.target.closest('.menu-zoom-btn') || e.target.closest('.menu-zoom-nav-btn')) return;
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+            if (zoomScale > 1.2) {
+                resetZoomState(true);
+            } else {
+                zoomScale = 2.4;
+                applyStageTransform(true);
+            }
+        }
+        lastTapTime = now;
+    });
+
+    // Mouse drag pan in zoom modal
+    zoomViewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.menu-zoom-btn') || e.target.closest('.menu-zoom-nav-btn')) return;
+        isPanning = true;
+        panStartX = e.clientX - panX;
+        panStartY = e.clientY - panY;
+        zoomViewport.classList.add('dragging');
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isPanning) return;
+        panX = e.clientX - panStartX;
+        panY = e.clientY - panStartY;
+        applyStageTransform(false);
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isPanning) {
+            isPanning = false;
+            zoomViewport.classList.remove('dragging');
+            if (zoomScale <= 1) {
+                panX = 0;
+                panY = 0;
+                applyStageTransform(true);
             }
         }
     });
 
-    // ── Render Menu Categories & Items from CAFE_CONFIG ──
-    function renderMenu() {
-        if (!CAFE_CONFIG || !CAFE_CONFIG.menuCategories) return;
-
-        const tabsContainer = document.getElementById('categoryTabs');
-        const catalogContainer = document.getElementById('menuCategoriesContainer');
-        
-        let tabsHtml = '';
-        let sectionsHtml = '';
-
-        CAFE_CONFIG.menuCategories.forEach((cat, index) => {
-            // Category Tab
-            const activeClass = index === 0 ? 'active' : '';
-            tabsHtml += `
-                <button class="category-pill ${activeClass}" onclick="scrollToCategory('${cat.id}', this)">
-                    ${cat.name}
-                </button>
-            `;
-
-            // Category Section
-            let itemsHtml = '';
-            cat.items.forEach(item => {
-                const badgeHtml = item.badge ? `<span class="menu-item-badge">${item.badge}</span>` : '';
-                itemsHtml += `
-                    <div class="menu-item-row">
-                        <div class="menu-item-meta">
-                            <div class="menu-item-name">
-                                <span>${item.name}</span>
-                                ${badgeHtml}
-                            </div>
-                            <p class="menu-item-desc">${item.desc}</p>
-                        </div>
-                        <span class="menu-item-price">${item.price}</span>
-                    </div>
-                `;
-            });
-
-            sectionsHtml += `
-                <div class="menu-category-section" id="${cat.id}">
-                    <div class="menu-category-header">
-                        <h2 class="section-heading" style="font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 6px;">${cat.name}</h2>
-                        <p class="section-intro" style="font-size: 14.5px;">${cat.description}</p>
-                    </div>
-                    <div class="menu-items-grid">
-                        ${itemsHtml}
-                    </div>
-                </div>
-            `;
-        });
-
-        if (tabsContainer) tabsContainer.innerHTML = tabsHtml;
-        if (catalogContainer) catalogContainer.innerHTML = sectionsHtml;
-
-        // Apply dynamic links
-        const waUrl = 'https://wa.me/' + CAFE_CONFIG.whatsappNumber + '?text=' + encodeURIComponent("Hi KOFFIE ART, I'd like to ask about the menu or place a takeaway order.");
-        document.querySelectorAll('[id*="Whatsapp"]').forEach(el => el.href = waUrl);
-        const dirUrl = CAFE_CONFIG.mapsUrl;
-        document.querySelectorAll('[id*="Directions"]').forEach(el => el.href = dirUrl);
-    }
-
-    function scrollToCategory(id, btn) {
-        document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-        if (btn) btn.classList.add('active');
-        const target = document.getElementById(id);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // Highlight active category tab on scroll
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('.menu-category-section');
-        const scrollPos = window.scrollY + 200;
-
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
-
-            if (scrollPos >= top && scrollPos < top + height) {
-                document.querySelectorAll('.category-pill').forEach(pill => {
-                    if (pill.getAttribute('onclick')?.includes(id)) {
-                        pill.classList.add('active');
-                    } else {
-                        pill.classList.remove('active');
-                    }
-                });
+    // Mouse wheel zoom in modal
+    zoomViewport.addEventListener('wheel', (e) => {
+        if (!zoomModal.classList.contains('active')) return;
+        e.preventDefault();
+        const delta = e.deltaY * -0.003;
+        const newScale = Math.min(maxZoomScale, Math.max(minZoomScale, zoomScale + delta));
+        if (newScale !== zoomScale) {
+            zoomScale = newScale;
+            if (zoomScale === 1) {
+                panX = 0;
+                panY = 0;
             }
-        });
+            applyStageTransform(false);
+        }
+    }, { passive: false });
+
+    // Touch handling: Pinch, Pan, Swipe Down in zoom modal
+    function getTouchDistance(t1, t2) {
+        return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+    }
+
+    zoomViewport.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 2) {
+            touchStartDist = getTouchDistance(e.touches[0], e.touches[1]);
+            touchInitialScale = zoomScale;
+            isPanning = false;
+            isSwipingDown = false;
+        } else if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            panStartX = e.touches[0].clientX - panX;
+            panStartY = e.touches[0].clientY - panY;
+            isPanning = zoomScale > 1;
+            isSwipingDown = zoomScale <= 1;
+        }
     }, { passive: true });
 
-    renderMenu();
+    zoomViewport.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 2) {
+            e.preventDefault();
+            const currentDist = getTouchDistance(e.touches[0], e.touches[1]);
+            if (touchStartDist > 0) {
+                const ratio = currentDist / touchStartDist;
+                zoomScale = Math.min(maxZoomScale, Math.max(minZoomScale, touchInitialScale * ratio));
+                applyStageTransform(false);
+            }
+        } else if (e.touches.length === 1) {
+            if (zoomScale > 1) {
+                e.preventDefault();
+                panX = e.touches[0].clientX - panStartX;
+                panY = e.touches[0].clientY - panStartY;
+                applyStageTransform(false);
+            } else if (isSwipingDown) {
+                const dy = e.touches[0].clientY - touchStartY;
+                const dx = e.touches[0].clientX - touchStartX;
+                if (dy > 0 && dy > Math.abs(dx)) {
+                    e.preventDefault();
+                    panY = dy * 0.7;
+                    applyStageTransform(false);
+                }
+            }
+        }
+    }, { passive: false });
+
+    zoomViewport.addEventListener('touchend', (e) => {
+        if (e.touches.length < 2 && touchStartDist > 0) {
+            touchStartDist = 0;
+            if (zoomScale <= 1) {
+                resetZoomState(true);
+            }
+        }
+
+        if (e.touches.length === 0) {
+            isPanning = false;
+            if (isSwipingDown && panY > 80) {
+                closeZoomModal();
+            } else {
+                if (zoomScale <= 1) {
+                    panX = 0;
+                    panY = 0;
+                    applyStageTransform(true);
+                }
+            }
+            isSwipingDown = false;
+        }
+    });
+
+    // ── 9. Global Keyboard Support ──
+    document.addEventListener('keydown', (e) => {
+        // Escape key: close drawer or zoom viewer
+        if (e.key === 'Escape') {
+            const drawer = document.getElementById('menuDrawer');
+            if (drawer && drawer.classList.contains('active')) {
+                toggleMobileMenu();
+                return;
+            }
+            if (zoomModal.classList.contains('active')) {
+                closeZoomModal();
+                return;
+            }
+        }
+
+        // When zoom modal is active
+        if (zoomModal.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToPrevZoomPage();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                goToNextZoomPage();
+            } else if (e.key === '+' || e.key === '=') {
+                e.preventDefault();
+                zoomIn();
+            } else if (e.key === '-') {
+                e.preventDefault();
+                zoomOut();
+            } else if (e.key === '0') {
+                e.preventDefault();
+                resetZoomState(true);
+            }
+            return;
+        }
+
+        // When zoom modal is NOT active: Left / Right arrows navigate carousel slides
+        if (e.key === 'ArrowLeft') {
+            if (currentSlideIndex > 0) {
+                e.preventDefault();
+                scrollToSlide(currentSlideIndex - 1);
+            }
+        } else if (e.key === 'ArrowRight') {
+            if (currentSlideIndex < MENU_IMAGES.length - 1) {
+                e.preventDefault();
+                scrollToSlide(currentSlideIndex + 1);
+            }
+        }
+    });
+
+    // ── 10. Initialization ──
+    renderTabs();
+    renderCarousel();
+    setupCarouselObserver();
+    updateActiveState(0);
     </script>
 </body>
 </html>

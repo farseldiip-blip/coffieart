@@ -1503,147 +1503,429 @@ input:focus-visible {
     color: #128C7E;
 }
 
-/* ── 14. /menu Page Specific Styles ── */
+/* ── 14. /menu Page (Image-Only Layout & Fullscreen Zoom) ── */
 .menu-page-header {
-    padding-top: calc(var(--header-height) + 40px);
-    padding-bottom: 32px;
+    padding-top: calc(var(--header-height) + 32px);
+    padding-bottom: 24px;
     text-align: center;
     background-color: var(--bg);
 }
 
-.menu-sticky-nav {
-    position: sticky;
-    top: var(--header-height);
-    z-index: 40;
-    background-color: rgba(244, 237, 227, 0.95);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--outline-light);
-    padding-block: 12px;
-}
-
 @media (max-width: 767px) {
-    .menu-sticky-nav {
-        top: var(--header-height-mobile);
+    .menu-page-header {
+        padding-top: calc(var(--header-height-mobile) + 24px);
+        padding-bottom: 16px;
     }
 }
 
-.category-pills {
+.menu-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding-inline: 24px;
+    padding-block: 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+/* Sticky Category Tabs Bar */
+.menu-sticky-tabs-bar {
+    position: sticky;
+    top: var(--header-height);
+    z-index: 80;
+    background: rgba(244, 237, 227, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--outline-light);
+    padding-block: 10px;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    .menu-sticky-tabs-bar {
+        top: var(--header-height-mobile);
+        padding-block: 8px;
+    }
+}
+
+.menu-tabs-scroll {
     display: flex;
     align-items: center;
     gap: 8px;
     overflow-x: auto;
-    padding-block: 4px;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    padding-inline: clamp(16px, 4vw, 32px);
+    max-width: 1000px;
+    margin-inline: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.category-pills::-webkit-scrollbar {
+.menu-tabs-scroll::-webkit-scrollbar {
     display: none;
 }
 
-.category-pill {
+.menu-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
     padding: 8px 18px;
     border-radius: var(--radius-full);
     font-size: 12.5px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    white-space: nowrap;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: 1px solid var(--outline-light);
+    background: transparent;
     color: var(--muted);
-    border: 1px solid var(--outline);
-    background-color: transparent;
-    transition: all var(--transition-fast);
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.category-pill:hover,
-.category-pill.active {
+.menu-tab-btn:hover {
+    color: var(--ink);
+    border-color: var(--muted);
+}
+
+.menu-tab-btn.active,
+.menu-tab-btn[aria-selected="true"] {
     background-color: var(--ink);
-    color: #FFFFFF;
+    color: #FAF6F0;
     border-color: var(--ink);
+    box-shadow: 0 2px 10px rgba(43, 29, 20, 0.18);
 }
 
-.menu-category-section {
-    padding-block: 40px;
-    scroll-margin-top: 140px;
+.menu-tab-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
-.menu-category-header {
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--outline-light);
+/* Horizontal Swipe Carousel */
+.menu-carousel-section {
+    padding-block: 16px 56px;
+    background-color: var(--bg);
+    overflow: hidden;
 }
 
-.menu-items-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+.menu-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media (min-width: 768px) {
-    .menu-items-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+.menu-carousel-track {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+}
+
+.menu-carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: clamp(12px, 3vw, 24px);
+    box-sizing: border-box;
+}
+
+.menu-carousel-card {
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-in;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--surface-card);
+    box-shadow: 0 6px 28px rgba(43, 29, 20, 0.1);
+    border: 1px solid var(--outline-light);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.menu-carousel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(43, 29, 20, 0.15);
+}
+
+.menu-carousel-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.menu-carousel-card img {
+    width: 100%;
+    height: auto;
+    max-height: 80svh;
+    object-fit: contain;
+    display: block;
+}
+
+@supports not (max-height: 80svh) {
+    .menu-carousel-card img {
+        max-height: 80vh;
     }
 }
 
-.menu-item-row {
-    background-color: var(--surface-card);
+/* Prev / Next buttons: >= 768px only, 48px touch targets, disabled at ends */
+.menu-carousel-nav-btn {
+    display: none; /* hidden on mobile */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: 50%;
+    background: rgba(244, 237, 227, 0.94);
     border: 1px solid var(--outline-light);
-    border-radius: var(--radius-md);
-    padding: 18px 22px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.menu-item-row:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(43, 29, 20, 0.05);
-}
-
-.menu-item-meta {
-    flex-grow: 1;
-}
-
-.menu-item-name {
-    font-family: 'Bodoni Moda', serif;
-    font-size: 18px;
-    font-weight: 700;
     color: var(--ink);
-    display: flex;
+    box-shadow: 0 4px 16px rgba(43, 29, 20, 0.12);
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all var(--transition-fast);
 }
 
-.menu-item-badge {
-    font-family: 'Manrope', sans-serif;
-    font-size: 10px;
+.menu-carousel-nav-btn:hover:not([disabled]) {
+    background: var(--ink);
+    color: #FAF6F0;
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 6px 20px rgba(43, 29, 20, 0.2);
+}
+
+.menu-carousel-nav-btn:disabled,
+.menu-carousel-nav-btn[aria-disabled="true"] {
+    opacity: 0.28;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.menu-carousel-prev {
+    left: 8px;
+}
+
+.menu-carousel-next {
+    right: 8px;
+}
+
+@media (min-width: 768px) {
+    .menu-carousel-nav-btn {
+        display: flex;
+    }
+    .menu-carousel-wrapper {
+        padding-inline: 60px;
+    }
+    .menu-carousel-prev {
+        left: 0;
+    }
+    .menu-carousel-next {
+        right: 0;
+    }
+}
+
+/* Counter under image */
+.menu-carousel-counter-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.menu-carousel-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 20px;
+    font-size: 13.5px;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    background: rgba(181, 101, 58, 0.12);
-    color: var(--accent);
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    background-color: var(--bg-alt);
+    border: 1px solid var(--outline-light);
     border-radius: var(--radius-full);
 }
 
-.menu-item-desc {
-    font-size: 13.5px;
-    color: var(--muted);
-    margin-top: 4px;
-    line-height: 1.5;
+@media (prefers-reduced-motion: reduce) {
+    .menu-carousel-track {
+        scroll-behavior: auto !important;
+    }
+    .menu-tab-btn,
+    .menu-carousel-card,
+    .menu-carousel-nav-btn {
+        transition: none !important;
+    }
 }
 
-.menu-item-price {
-    font-weight: 800;
-    font-size: 16px;
-    color: var(--accent);
-    white-space: nowrap;
+
+/* Full-Screen Zoom Viewer */
+.menu-zoom-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(18, 12, 8, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    touch-action: none;
+    user-select: none;
 }
+
+.menu-zoom-modal.active {
+    display: flex;
+}
+
+.menu-zoom-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 320;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    padding-top: max(14px, env(safe-area-inset-top));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+    color: #FAF6F0;
+    pointer-events: auto;
+}
+
+.menu-zoom-indicator {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 240, 0.9);
+}
+
+.menu-zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-zoom-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-zoom-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: scale(1.06);
+}
+
+.menu-zoom-viewport {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.menu-zoom-viewport.dragging {
+    cursor: grabbing;
+}
+
+.menu-zoom-stage {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center center;
+    will-change: transform;
+    transition: transform 0.05s ease-out;
+}
+
+.menu-zoom-stage img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+.menu-zoom-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 310;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.menu-zoom-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.28);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.menu-zoom-prev { left: 16px; }
+.menu-zoom-next { right: 16px; }
+
+@media (max-width: 767px) {
+    .menu-zoom-prev { left: 6px; }
+    .menu-zoom-next { right: 6px; }
+    .menu-zoom-stage img {
+        max-width: 96vw;
+        max-height: 88vh;
+    }
+}
+
 
 /* ── 15. Scroll Reveal Animations ── */
 .reveal,
