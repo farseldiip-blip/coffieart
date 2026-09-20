@@ -412,8 +412,13 @@ input:focus-visible {
     transition: color var(--transition-fast);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: var(--accent);
+}
+
+.site-header:not(.scrolled) .nav-link.active {
+    color: #FFFFFF;
 }
 
 .nav-link::after {
@@ -427,8 +432,18 @@ input:focus-visible {
     transition: width var(--transition-fast);
 }
 
-.nav-link:hover::after {
+.site-header:not(.scrolled) .nav-link.active::after {
+    background: #FAF6F0;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
+}
+
+.mobile-nav-link.active {
+    color: var(--accent) !important;
+    font-weight: 800;
 }
 
 .mobile-menu-toggle {
@@ -1433,75 +1448,198 @@ input:focus-visible {
     }
 }
 
-/* ── 13. Mobile Sticky Bottom Action Bar ── */
+/* ── 13. Mobile Floating Bottom Action Dock (Screens < 768px only) ── */
 .mobile-bottom-bar {
     display: none;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 45;
-    background: rgba(244, 237, 227, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid var(--outline-light);
-    box-shadow: 0 -4px 20px rgba(43, 29, 20, 0.08);
-    padding-inline: 8px;
-    padding-block-start: 8px;
-    padding-block-end: max(8px, env(safe-area-inset-bottom, 16px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    left: 12px;
+    right: 12px;
+    margin-inline: auto;
+    max-width: 480px;
+    height: 64px;
+    border-radius: 22px;
+    z-index: 100;
+    background-color: var(--ink); /* solid fallback */
+    background: rgba(43, 29, 20, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    padding: 6px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    animation: dockSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+@keyframes dockSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 767px) {
     .mobile-bottom-bar {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 6px;
+    }
+
+    body {
+        padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .site-footer {
+        padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     }
 }
 
+/* Hide on scroll down or when drawer/lightbox/zoom is active */
+.mobile-bottom-bar.dock--hidden {
+    transform: translateY(calc(100% + 24px + env(safe-area-inset-bottom, 0px)));
+    opacity: 0;
+    pointer-events: none;
+}
+
+body:has(.mobile-menu-drawer.active) .mobile-bottom-bar,
+body:has(.lightbox.active) .mobile-bottom-bar,
+body:has(.menu-zoom-modal.active) .mobile-bottom-bar,
+body.modal-open .mobile-bottom-bar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(calc(100% + 24px + env(safe-area-inset-bottom, 0px))) !important;
+}
+
+/* Dock items (3 equal columns) */
 .bottom-bar-btn {
     flex: 1 1 0;
     min-width: 0;
+    height: 100%;
+    min-height: 48px;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    min-height: 48px;
-    padding-inline: 4px;
-    padding-block: 6px;
+    gap: 4px;
+    padding: 6px 4px;
     font-family: 'Manrope', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--ink);
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
+    color: rgba(244, 237, 227, 0.7);
+    border-radius: 16px;
+    transition: transform 0.15s ease, filter 0.15s ease, background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.bottom-bar-btn:active {
-    transform: scale(0.97);
+.bottom-bar-btn span:not(.material-symbols-outlined) {
+    line-height: 1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: inherit;
+}
+
+.bottom-bar-icon-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
 }
 
 .bottom-bar-btn span.material-symbols-outlined {
-    font-size: 20px;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: inherit;
+    transition: color 0.15s ease;
 }
 
-.bottom-bar-btn--primary {
+/* Hover & Active / Pressed State */
+.bottom-bar-btn:hover {
+    color: var(--bg);
+}
+
+.bottom-bar-btn:active {
+    transform: scale(0.96);
+    filter: brightness(0.92);
+}
+
+.bottom-bar-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Active Menu Item (on /menu page: accent dot under icon) */
+.bottom-bar-btn.active,
+.bottom-bar-btn[aria-current="page"] {
+    color: var(--bg);
+}
+
+.bottom-bar-btn.active .bottom-bar-icon-wrap::after,
+.bottom-bar-btn[aria-current="page"] .bottom-bar-icon-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
     background-color: var(--accent);
-    color: #FFFFFF;
+    box-shadow: 0 0 6px rgba(181, 101, 58, 0.6);
 }
 
-.bottom-bar-btn--primary:hover {
-    background-color: var(--accent-hover);
-}
-
+/* WhatsApp: Single highlighted action in accent color */
 .bottom-bar-btn--whatsapp {
-    color: #128C7E;
+    background-color: var(--accent);
+    color: #FFFFFF !important;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(181, 101, 58, 0.35);
 }
+
+.bottom-bar-btn--whatsapp span.material-symbols-outlined,
+.bottom-bar-btn--whatsapp span:not(.material-symbols-outlined) {
+    color: #FFFFFF !important;
+}
+
+.bottom-bar-btn--whatsapp:hover {
+    background-color: var(--accent-hover);
+    color: #FFFFFF !important;
+}
+
+.bottom-bar-btn--whatsapp:active {
+    background-color: var(--accent-hover);
+    transform: scale(0.96);
+    filter: brightness(0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-bottom-bar {
+        animation: none !important;
+        transition: none !important;
+    }
+    .bottom-bar-btn {
+        transition: none !important;
+    }
+}
+
 
 /* ── 14. /menu Page (Image-Only Layout & Fullscreen Zoom) ── */
 .menu-page-header {
@@ -1957,8 +2095,59 @@ input:focus-visible {
 
 .stagger-1 { transition-delay: 0.08s; }
 .stagger-2 { transition-delay: 0.16s; }
-.stagger-3 { transition-delay: 0.24s; }
-.stagger-4 { transition-delay: 0.32s; }
+/* ── Section Scroll Offsets & Focus Highlight ── */
+#visit,
+#contact,
+#gallery,
+#home,
+#menu-preview {
+    scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+@media (max-width: 767px) {
+    #visit,
+    #contact,
+    #gallery,
+    #home,
+    #menu-preview {
+        scroll-margin-top: calc(var(--header-height-mobile) + 16px);
+    }
+}
+
+/* Accessible heading focus without outline */
+.section-heading:focus {
+    outline: none;
+}
+
+/* Subtle Target Card Highlight (1.2s pulse) */
+@keyframes targetCardPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(181, 101, 58, 0);
+        outline: 2px solid transparent;
+    }
+    30% {
+        box-shadow: 0 0 0 4px rgba(181, 101, 58, 0.4), 0 12px 32px rgba(43, 29, 20, 0.16);
+        outline: 2px solid var(--accent);
+    }
+    70% {
+        box-shadow: 0 0 0 4px rgba(181, 101, 58, 0.25), 0 12px 32px rgba(43, 29, 20, 0.14);
+        outline: 2px solid var(--accent);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(181, 101, 58, 0);
+        outline: 2px solid transparent;
+    }
+}
+
+.section-target-highlight {
+    animation: targetCardPulse 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-target-highlight {
+        animation: none !important;
+    }
+}
 
 /* ── 16. Print Stylesheet ── */
 @media print {

@@ -174,7 +174,7 @@
                         <a href="menu.html" class="btn-hero-primary" id="heroCtaMenu">
                             <span>View Menu</span>
                         </a>
-                        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary" id="heroCtaDirections">
+                        <a href="#visit" class="btn-hero-secondary" id="heroCtaDirections">
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">near_me</span>
                             <span>Get Directions</span>
                         </a>
@@ -436,7 +436,7 @@
             <div class="container">
                 <div class="section-header section-header--center reveal">
                     <p class="section-label">Direct Connect</p>
-                    <h2 class="section-heading" id="contactTitle">Get in Touch</h2>
+                    <h2 class="section-heading" id="contactTitle" tabindex="-1">Get in Touch</h2>
                     <p class="section-intro">Questions, reservations, or just want to say hi? Reach out directly through your favorite channel.</p>
                 </div>
 
@@ -527,18 +527,24 @@
         </div>
     </footer>
 
-    <!-- Mobile Sticky Bottom Action Bar (Screens < 768px only) -->
-    <nav class="mobile-bottom-bar" aria-label="Mobile Quick Actions">
-        <a href="menu.html" class="bottom-bar-btn bottom-bar-btn--primary">
-            <span class="material-symbols-outlined" aria-hidden="true">restaurant_menu</span>
+    <!-- Mobile Floating Bottom Action Dock (Screens < 768px only) -->
+    <nav class="mobile-bottom-bar" aria-label="Quick actions">
+        <a href="menu.html" class="bottom-bar-btn" id="mobileMenuBtn">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">restaurant_menu</span>
+            </span>
             <span>Menu</span>
         </a>
-        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn" id="mobileDirectionsBtn">
-            <span class="material-symbols-outlined" aria-hidden="true">near_me</span>
+        <a href="#visit" class="bottom-bar-btn" id="mobileDirectionsBtn">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">near_me</span>
+            </span>
             <span>Directions</span>
         </a>
-        <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn bottom-bar-btn--whatsapp" id="mobileWhatsappBtn">
-            <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+        <a href="#contact" class="bottom-bar-btn bottom-bar-btn--whatsapp" id="mobileWhatsappBtn">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+            </span>
             <span>WhatsApp</span>
         </a>
     </nav>
@@ -584,13 +590,30 @@
         }
     });
 
-    // ── Header Scroll Blur & Shadow ──
+    // ── Header Scroll & Mobile Dock Auto-Hide ──
+    let lastScrollY = window.scrollY;
+    const dockThreshold = 10;
+    const mobileDock = document.querySelector('.mobile-bottom-bar');
+
     window.addEventListener('scroll', function() {
+        const currentY = window.scrollY;
         const header = document.getElementById('siteHeader');
-        if (window.scrollY > 40) {
+        if (currentY > 40) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+
+        if (mobileDock) {
+            const diff = currentY - lastScrollY;
+            if (Math.abs(diff) > dockThreshold) {
+                if (diff > 0 && currentY > 80) {
+                    mobileDock.classList.add('dock--hidden');
+                } else if (diff < 0) {
+                    mobileDock.classList.remove('dock--hidden');
+                }
+                lastScrollY = currentY;
+            }
         }
     }, { passive: true });
 
@@ -805,6 +828,113 @@
             if (touchStartX - touchEndX > 50) nextLightbox();
             if (touchEndX - touchStartX > 50) prevLightbox();
         }, { passive: true });
+    }
+
+    // ── Smart Scroll-to-Section Handler ──
+    // Handles all #visit and #contact anchor clicks outside their own sections
+    function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (!section) return;
+
+        // Close mobile drawer first if open
+        const drawer = document.getElementById('menuDrawer');
+        if (drawer && drawer.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+
+        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        section.scrollIntoView({ behavior: isReduced ? 'auto' : 'smooth', block: 'start' });
+
+        // Update URL hash without jump
+        history.replaceState(null, '', '#' + sectionId);
+
+        // Focus the heading for accessibility
+        const headingMap = { visit: 'visitTitle', contact: 'contactTitle' };
+        const heading = document.getElementById(headingMap[sectionId]);
+        if (heading) {
+            setTimeout(() => heading.focus({ preventScroll: true }), isReduced ? 0 : 500);
+        }
+
+        // Highlight target cards briefly
+        const cardMap = {
+            visit: section.querySelector('.location-card'),
+            contact: section.querySelectorAll('.contact-card')
+        };
+
+        if (!isReduced) {
+            const targets = sectionId === 'contact'
+                ? Array.from(cardMap.contact || [])
+                : cardMap.visit ? [cardMap.visit] : [];
+
+            targets.forEach(card => {
+                card.classList.add('section-target-highlight');
+                card.addEventListener('animationend', () => {
+                    card.classList.remove('section-target-highlight');
+                }, { once: true });
+            });
+        }
+    }
+
+    // Intercept all anchor clicks with href="#visit" or href="#contact"
+    // that are NOT inside the target section itself
+    document.addEventListener('click', function(e) {
+        const anchor = e.target.closest('a[href="#visit"], a[href="#contact"]');
+        if (!anchor) return;
+
+        const targetId = anchor.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+
+        // If the link lives INSIDE its target section, let the default behavior through
+        // (those are the real external links like Get Directions on Maps or WhatsApp)
+        if (targetSection && targetSection.contains(anchor)) return;
+
+        e.preventDefault();
+        scrollToSection(targetId);
+    });
+
+    // ── Active Nav Link via IntersectionObserver ──
+    (function() {
+        const navSections = ['gallery', 'visit', 'contact'];
+        const desktopLinks = document.querySelectorAll('.site-nav .nav-link[href^="#"]');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-list .mobile-nav-link[href^="#"]');
+
+        function setActiveNav(activeId) {
+            desktopLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                link.classList.toggle('active', href === '#' + activeId);
+            });
+            mobileLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                link.classList.toggle('active', href === '#' + activeId);
+            });
+        }
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveNav(entry.target.id);
+                }
+            });
+        }, { threshold: 0.25, rootMargin: '-80px 0px -40% 0px' });
+
+        navSections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) navObserver.observe(el);
+        });
+
+        // Clear active state when scrolled to top (hero)
+        const heroEl = document.getElementById('home');
+        if (heroEl) {
+            const heroObs = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) setActiveNav('');
+            }, { threshold: 0.4 });
+            heroObs.observe(heroEl);
+        }
+    })();
+
+    // Handle initial hash on page load
+    if (window.location.hash === '#visit' || window.location.hash === '#contact') {
+        setTimeout(() => scrollToSection(window.location.hash.slice(1)), 300);
     }
     </script>
 </body>

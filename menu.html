@@ -212,6 +212,28 @@
         </div>
     </footer>
 
+    <!-- Mobile Floating Bottom Action Dock (Screens < 768px only) -->
+    <nav class="mobile-bottom-bar" aria-label="Quick actions">
+        <a href="menu.html" class="bottom-bar-btn active" id="mobileMenuBtn" aria-current="page">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">restaurant_menu</span>
+            </span>
+            <span>Menu</span>
+        </a>
+        <a href="https://maps.google.com/?q=Mansoura+Dakahlia+Egypt" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn" id="mobileDirectionsBtn">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">near_me</span>
+            </span>
+            <span>Directions</span>
+        </a>
+        <a href="https://wa.me/351XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="bottom-bar-btn bottom-bar-btn--whatsapp" id="mobileWhatsappBtn">
+            <span class="bottom-bar-icon-wrap">
+                <span class="material-symbols-outlined" aria-hidden="true">chat</span>
+            </span>
+            <span>WhatsApp</span>
+        </a>
+    </nav>
+
     <!-- Menu Carousel & Zoom Viewer Script -->
     <script>
     // ── 1. Image Data Array with Category Labels ──
@@ -734,7 +756,26 @@
         }
     });
 
-    // ── 10. Initialization ──
+    // ── 10. Mobile Dock Auto-Hide on Scroll ──
+    let lastScrollY = window.scrollY;
+    const dockThreshold = 10;
+    const mobileDock = document.querySelector('.mobile-bottom-bar');
+
+    window.addEventListener('scroll', function() {
+        if (!mobileDock) return;
+        const currentY = window.scrollY;
+        const diff = currentY - lastScrollY;
+        if (Math.abs(diff) > dockThreshold) {
+            if (diff > 0 && currentY > 80) {
+                mobileDock.classList.add('dock--hidden');
+            } else if (diff < 0) {
+                mobileDock.classList.remove('dock--hidden');
+            }
+            lastScrollY = currentY;
+        }
+    }, { passive: true });
+
+    // ── 11. Initialization ──
     renderTabs();
     renderCarousel();
     setupCarouselObserver();
